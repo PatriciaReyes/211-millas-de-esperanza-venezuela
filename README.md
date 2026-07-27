@@ -1,26 +1,38 @@
-# 211 Millas de Esperanza - Venezuela
-
-Página de seguimiento (no oficial) para la caminata de Mauricio Fuentes y su primo Alfredo por el John Muir Trail — Yosemite a Mt. Whitney — a beneficio de los niños afectados por los terremotos de junio 2026 en Venezuela.
-
-🔗 **Sitio en vivo:** _(agregar link de Netlify aquí una vez publicado)_
-
-## Sobre esta página
-
-Esta página es un tracker construido por la familia, no la fundación oficial. No recolecta ni procesa fondos — todas las donaciones van directo a Fundación Proyecto de la Mano vía los canales oficiales (link, Zelle, Venmo) listados en la página.
-
-Sitio bilingüe (español / inglés), un solo archivo HTML autocontenido.
-
-## Cómo actualizar el progreso
-
-Todo lo que cambia semana a semana vive en un solo lugar: el bloque `CAMPAIGN_DATA` cerca del final de `index.html`.
-
-1. Edita directo en GitHub: abre `index.html`, clic en el ícono de lápiz (✏️) arriba a la derecha del archivo.
-2. Busca `CAMPAIGN_DATA` y actualiza:
-   - `milesWalked` — millas completadas
-   - `amountRaised` — estimado recaudado en USD
-   - `lastUpdated` — fecha de esta actualización (formato YYYY-MM-DD)
-3. Dale "Commit changes" — Netlify redespliega solo, en menos de un minuto.
-
-## Agregar fotos
-
-En la sección de fotos, reemplaza cada `<div class="photo-slot">` por `<img src="ruta-de-la-foto.jpg" alt="...">`.
+# 211 Millas de Esperanza
+ 
+An independent tracking page for Mauricio Fuentes and Alfredo Millán's John Muir Trail walk — Yosemite to Mt. Whitney — raising funds for children affected by the June 2026 earthquakes in Venezuela.
+ 
+🔗 **Live site:** _(add the Netlify URL here once published)_
+ 
+## About this page
+ 
+This is a family-built tracker, not the official foundation site. It does not collect or process any funds — every donation goes directly
+to [Fundación Proyecto de la Mano](https://fundacionproyectodelamano.org/) through the official channels listed on the page (their donation page, Zelle, or Venmo).
+ 
+Bilingual (Spanish / English), single self-contained HTML file — no build step, no dependencies.
+ 
+## Updating progress
+ 
+Everything that changes week to week lives in one place: the `CAMPAIGN_DATA` block near the end of `index.html`.
+ 
+1. Edit directly on GitHub: open `index.html`, click the pencil icon (✏️) in the top right of the file view.
+2. Find `CAMPAIGN_DATA` and update:
+   - `milesWalked` — miles completed so far
+   - `amountRaised` — estimated dollars raised (USD)
+   - `lastUpdated` — date of this update (YYYY-MM-DD format)
+3. Commit the change — Netlify redeploys automatically, live in under a minute.
+The day counter and the route map marker are both calculated automatically from `startDate` and `milesWalked` — no manual updates needed for those.
+ 
+## Adding photos
+ 
+Photos load automatically from the `/photos` folder in this repo — no code changes needed.
+ 
+1. Upload image files (`.jpg`, `.jpeg`, `.png`, or `.webp`) to `/photos`.
+2. The page fetches that folder's contents on load and displays the most recent files (by filename), up to the `maxPhotos` limit set in `PHOTOS_REPO` inside `index.html`.
+3. Until photos exist, the page shows "coming soon" placeholders instead.
+Before this works, `PHOTOS_REPO.owner` in `index.html` needs to be set to this repo's GitHub username (it ships with a placeholder).
+ 
+## Possible next step: Instagram integration
+ 
+Not built yet — worth considering later if manually uploading photos to `/photos` becomes a bottleneck once the trek is underway.
+ 
