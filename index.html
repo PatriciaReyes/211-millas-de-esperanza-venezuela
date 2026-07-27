@@ -303,7 +303,16 @@
     border-radius:2px;
   }
   .photo-slot img{width:100%; height:100%; object-fit:cover; border-radius:2px;}
-  .photo-slot:has(img){border-style:solid; border-color:var(--line); padding:0;}
+  .photo-slot:has(img){border-style:solid; border-color:var(--line); padding:0; position:relative;}
+  .photo-caption{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    background:linear-gradient(transparent, rgba(0,0,0,0.65));
+    color:var(--white);
+    font-size:10.5px;
+    padding:16px 8px 6px;
+    line-height:1.3;
+  }
   @media (max-width:600px){
     .photo-grid{grid-template-columns:repeat(2,1fr);}
   }
@@ -620,10 +629,10 @@
     <h2 data-lang="en">Daily dispatches from the trail</h2>
     <h2 data-lang="es">Reportes diarios desde el sendero</h2>
 
-    <!-- This grid fills itself automatically from the /photos folder in the
-         GitHub repo (see PHOTOS_REPO config in the script below). Just
-         upload images to that folder — nothing here needs to be edited.
-         Until photos exist, it falls back to the placeholders below. -->
+    <!-- This grid fills itself automatically from photos/manifest.json in
+         the repo. Upload images to /photos, add a line for each one to
+         manifest.json — nothing here needs to be edited. Until photos
+         exist, it falls back to the placeholders below. -->
     <div class="photo-grid" id="photoGrid">
       <div class="photo-slot" data-lang="en">Photo coming soon</div>
       <div class="photo-slot" data-lang="es">Foto próximamente</div>
@@ -725,16 +734,10 @@
     { mile: 211, en: "Mt. Whitney",      es: "Monte Whitney" }
   ];
 
-  // Photos auto-load from this GitHub repo folder — just upload images
-  // to /photos in the repo, nothing here needs to change afterward.
-  // ⚠️ FILL IN "owner" WITH YOUR GITHUB USERNAME BEFORE PUBLISHING.
-  const PHOTOS_REPO = {
-    owner: "YOUR-GITHUB-USERNAME",
-    name: "211-millas-de-esperanza",
-    branch: "main",
-    folder: "photos",
-    maxPhotos: 9   // most recent N photos shown, by filename order
-  };
+  // Photos load from photos/manifest.json in this same repo — no GitHub
+  // account, API, or rate limits involved. Add a line to that file for
+  // each photo you upload to /photos. See manifest.json for the format.
+  const PHOTOS_MANIFEST_URL = 'photos/manifest.json';
   /* ============================================================ */
 
   let currentLang = 'en';
@@ -796,30 +799,20 @@
   }
 
   function loadPhotos() {
-    // Skip quietly if the username placeholder hasn't been filled in yet —
-    // keeps the "coming soon" placeholders showing instead of erroring.
-    if (PHOTOS_REPO.owner === "YOUR-GITHUB-USERNAME") return;
-
-    const apiUrl = 'https://api.github.com/repos/' + PHOTOS_REPO.owner + '/' +
-      PHOTOS_REPO.name + '/contents/' + PHOTOS_REPO.folder + '?ref=' + PHOTOS_REPO.branch;
-
-    fetch(apiUrl)
-      .then(function(res){ if (!res.ok) throw new Error('no photos folder yet'); return res.json(); })
-      .then(function(files){
-        const imageExt = /\.(jpe?g|png|webp)$/i;
-        const images = files
-          .filter(function(f){ return f.type === 'file' && imageExt.test(f.name); })
-          .sort(function(a,b){ return b.name.localeCompare(a.name); }) // newest filename first
-          .slice(0, PHOTOS_REPO.maxPhotos);
-
-        if (images.length === 0) return; // keep placeholders
+    fetch(PHOTOS_MANIFEST_URL, { cache: 'no-store' })
+      .then(function(res){ if (!res.ok) throw new Error('no manifest yet'); return res.json(); })
+      .then(function(data){
+        const photos = (data && data.photos) || [];
+        if (photos.length === 0) return; // keep placeholders
 
         const grid = document.getElementById('photoGrid');
-        grid.innerHTML = images.map(function(f){
-          return '<div class="photo-slot"><img src="' + f.download_url + '" alt="211 Millas de Esperanza — John Muir Trail" loading="lazy"></div>';
+        grid.innerHTML = photos.map(function(p){
+          const cap = p['caption' + (currentLang === 'es' ? 'Es' : 'En')] || '';
+          const capHtml = cap ? '<div class="photo-caption mono">' + cap + '</div>' : '';
+          return '<div class="photo-slot"><img src="photos/' + p.file + '" alt="211 Millas de Esperanza — John Muir Trail" loading="lazy">' + capHtml + '</div>';
         }).join('');
       })
-      .catch(function(){ /* stay on placeholders — no photos yet, or offline */ });
+      .catch(function(){ /* stay on placeholders — no manifest yet, or offline */ });
   }
 
   function render() {
@@ -843,6 +836,7 @@
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('btn-es').classList.toggle('active', lang === 'es');
     renderDayText();
+    loadPhotos();
   }
 
   render();
