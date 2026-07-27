@@ -298,7 +298,8 @@
     margin-bottom:16px;
     font-size:17px;
     color:var(--charcoal-soft);
-    max-width:66ch;
+    text-align:justify;
+    text-justify:inter-word;
   }
   .story p.lead{
     font-size:19px;
@@ -417,7 +418,7 @@
     font-size:12.5px;
     color:var(--charcoal-soft);
     margin-top:8px;
-    max-width:42ch;
+   
   }
 
   /* suggested amounts — plain text, not clickable-looking */
@@ -473,7 +474,7 @@
   .disclaimer p{
     font-size:14px;
     color:var(--charcoal-soft);
-    max-width:64ch;
+   
   }
   .disclaimer strong{color:var(--charcoal);}
 
@@ -500,7 +501,6 @@
     margin:0 auto 16px;
     border-radius:2px;
   }
-
 </style>
 </head>
 <body>
@@ -629,12 +629,12 @@
     <div data-lang="en">
       <p class="eyebrow">The challenge</p>
       <h2>The John Muir Trail</h2>
-      <p style="color:var(--charcoal-soft); max-width:60ch;">We'll cross the Sierra Nevada in California, from Yosemite National Park to the summit of Mount Whitney — the highest point in the contiguous United States.</p>
+      <p style="color:var(--charcoal-soft);">We'll cross the Sierra Nevada in California, from Yosemite National Park to the summit of Mount Whitney — the highest point in the contiguous United States.</p>
     </div>
     <div data-lang="es">
       <p class="eyebrow">El reto</p>
       <h2>El John Muir Trail</h2>
-      <p style="color:var(--charcoal-soft); max-width:60ch;">Cruzaremos la Sierra Nevada de California, desde el Parque Nacional Yosemite hasta la cima del Monte Whitney, el punto más alto de los Estados Unidos contiguos.</p>
+      <p style="color:var(--charcoal-soft);">Cruzaremos la Sierra Nevada de California, desde el Parque Nacional Yosemite hasta la cima del Monte Whitney, el punto más alto de los Estados Unidos contiguos.</p>
     </div>
 
     <div class="stat-grid">
@@ -707,13 +707,13 @@
     <div data-lang="en">
       <p class="eyebrow">How to help</p>
       <h2>$1+ for every mile we walk</h2>
-      <p style="color:var(--charcoal-soft); max-width:60ch;">100% of what's raised goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, providing food, shelter, and psychological support to children orphaned by the earthquakes.</p>
+      <p style="color:var(--charcoal-soft);">100% of what's raised goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, providing food, shelter, and psychological support to children orphaned by the earthquakes.</p>
       <p class="amounts-line"><b>$1</b> = 1 mile &nbsp;·&nbsp; <b>$5</b> = 5 miles &nbsp;·&nbsp; <b>$10+</b> = direct support for rebuilding</p>
     </div>
     <div data-lang="es">
       <p class="eyebrow">Cómo puedes ayudar</p>
       <h2>$1+ por cada milla que caminemos</h2>
-      <p style="color:var(--charcoal-soft); max-width:60ch;">El 100% de lo recaudado se dona directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, para garantizar alimentación, refugio y apoyo psicológico a los niños huérfanos por esta tragedia.</p>
+      <p style="color:var(--charcoal-soft);">El 100% de lo recaudado se dona directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, para garantizar alimentación, refugio y apoyo psicológico a los niños huérfanos por esta tragedia.</p>
       <p class="amounts-line"><b>$1</b> = 1 milla &nbsp;·&nbsp; <b>$5</b> = 5 millas &nbsp;·&nbsp; <b>$10+</b> = aporte directo a la reconstrucción</p>
     </div>
 
@@ -758,9 +758,11 @@
 </section>
 
 <footer>
-  <div class="flag-line"></div>
-  <p data-lang="en">211 MILES OF HOPE · YOSEMITE → MT. WHITNEY · 2026</p>
-  <p data-lang="es">211 MILLAS DE ESPERANZA · YOSEMITE → MT. WHITNEY · 2026</p>
+  <div class="wrap">
+    <div class="flag-line"></div>
+    <p data-lang="en">211 MILES OF HOPE · YOSEMITE → MT. WHITNEY · 2026</p>
+    <p data-lang="es">211 MILLAS DE ESPERANZA · YOSEMITE → MT. WHITNEY · 2026</p>
+  </div>
 </footer>
 
 <script>

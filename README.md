@@ -10,12 +10,23 @@ This is a family-built tracker, not the official foundation site. It does not co
 
 Bilingual (Spanish / English), single self-contained HTML file — no build step, no external dependencies, no API keys.
 
+## Project structure
+
+```
+211-millas-de-esperanza/
+├── index.html          ← the whole site (HTML, CSS, JS in one file)
+├── README.md
+└── photos/
+    ├── manifest.json    ← list of photos to display (see below)
+    └── (image files)
+```
+
 ## Updating progress
 
 Everything that changes week to week lives in one place: the `CAMPAIGN_DATA` block near the end of `index.html`.
 
 1. Edit directly on GitHub: open `index.html`, click the pencil icon (✏️) in the top right of the file view.
-2. Find `CAMPAIGN_DATA` and update:
+2. Find `CAMPAIGN_DATA` near the end of the file and update:
    - `milesWalked` — miles completed so far
    - `amountRaised` — estimated dollars raised (USD)
    - `lastUpdated` — date of this update (YYYY-MM-DD format)
