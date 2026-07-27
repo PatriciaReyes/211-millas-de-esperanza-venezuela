@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>211 Miles of Hope / 211 Millas de Esperanza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,opt@0,9..40;1,9..40&family=Source+Serif+4:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  /* ============================================================
+     EDIT YOUR NUMBERS HERE — search for CAMPAIGN_DATA in the
+     <script> near the bottom of this file to update progress.
+     ============================================================ */
+
+  :root{
+    --stone:        #F3EFE7;
+    --stone-dim:     #EAE3D6;
+    --charcoal:      #24211B;
+    --charcoal-soft: #4A453B;
+    --alpenglow:     #C1552A;
+    --alpenglow-dim: #E9C9B4;
+    --pine:          #3E5943;
+    --pine-dim:      #A9BEAC;
+    --gold:          #D9A02E;
+    --line:          #D8CFBC;
+    --white:         #FFFDF8;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--stone);
+    color:var(--charcoal);
+    font-family:'Source Serif 4', Georgia, serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  h1,h2,h3, .eyebrow, .mile-num, .stat-num, .btn, nav{
+    font-family:'Oswald', 'Arial Narrow', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+
+  .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0;}
+
+  a{color:inherit;}
+
+  img{max-width:100%; display:block;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  :focus-visible{
+    outline:3px solid var(--alpenglow);
+    outline-offset:3px;
+  }
+
+  /* ---------- language toggle ---------- */
+
+  .langbar{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    background:var(--charcoal);
+    color:var(--stone);
+  }
+  .langbar-inner{
+    max-width:920px;
+    margin:0 auto;
+    padding:10px 24px;
+    display:flex;
+    justify-content:flex-end;
+    gap:2px;
+  }
+  .lang-btn{
+    background:none;
+    border:1px solid rgba(243,239,231,0.35);
+    padding:4px;
+    cursor:pointer;
+    line-height:0;
+    transition:border-color 0.15s, opacity 0.15s;
+    opacity:0.55;
+  }
+  .lang-btn svg{display:block; width:26px; height:18px; border-radius:2px;}
+  .lang-btn:first-child{border-radius:3px 0 0 3px; border-right:none;}
+  .lang-btn:last-child{border-radius:0 3px 3px 0;}
+  .lang-btn.active{
+    border-color:var(--gold);
+    opacity:1;
+  }
+
+  body{padding-top:42px;}
+
+  /* ---------- language visibility ---------- */
+
+  [data-lang]{display:none;}
+  html[data-active-lang="en"] [data-lang="en"]{display:block;}
+  html[data-active-lang="es"] [data-lang="es"]{display:block;}
+  html[data-active-lang="en"] span[data-lang="en"],
+  html[data-active-lang="es"] span[data-lang="es"]{display:inline;}
+
+  /* ---------- hero ---------- */
+
+  .hero{
+    position:relative;
+    background:var(--charcoal);
+    color:var(--stone);
+    overflow:hidden;
+    padding:72px 0 0;
+  }
+  .hero-eyebrow{
+    text-align:center;
+    font-size:13px;
+    color:var(--gold);
+    letter-spacing:0.18em;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    text-align:center;
+    font-size:clamp(34px, 7vw, 64px);
+    line-height:1.04;
+    font-weight:700;
+    color:var(--white);
+    padding:0 12px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--alpenglow-dim);
+  }
+  .hero-sub{
+    max-width:560px;
+    margin:22px auto 0;
+    text-align:center;
+    font-size:17px;
+    color:var(--stone-dim);
+    padding:0 20px;
+  }
+  .hero-names{
+    text-align:center;
+    margin-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--pine-dim);
+    letter-spacing:0.04em;
+  }
+
+  /* mountain silhouette */
+  .ridge{
+    width:100%;
+    display:block;
+    margin-top:56px;
+  }
+
+  /* trail progress strip */
+  .trail-strip{
+    background:var(--white);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .trail-inner{
+    max-width:920px;
+    margin:0 auto;
+    padding:34px 24px 30px;
+  }
+  .trail-labels{
+    display:flex;
+    justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--charcoal-soft);
+    margin-bottom:10px;
+  }
+  .trail-labels .end{text-align:right;}
+  .trail-track{
+    position:relative;
+    height:10px;
+    background:var(--stone-dim);
+    border-radius:6px;
+    overflow:visible;
+  }
+  .trail-fill{
+    position:absolute;
+    left:0; top:0; bottom:0;
+    background:linear-gradient(90deg, var(--pine), var(--alpenglow));
+    border-radius:6px;
+    width:0%; /* set by JS */
+    transition:width 1.1s cubic-bezier(.4,0,.2,1);
+  }
+  .trail-marker{
+    position:absolute;
+    top:50%;
+    left:0%; /* set by JS */
+    transform:translate(-50%, -50%);
+    width:20px; height:20px;
+    background:var(--gold);
+    border:3px solid var(--charcoal);
+    border-radius:50%;
+    transition:left 1.1s cubic-bezier(.4,0,.2,1);
+  }
+  .trail-stats{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    margin-top:26px;
+  }
+  .stat{flex:1 1 140px;}
+  .stat-num{
+    font-size:26px;
+    font-weight:600;
+    color:var(--alpenglow);
+  }
+  .stat-label{
+    font-size:12px;
+    color:var(--charcoal-soft);
+    margin-top:2px;
+  }
+  .trail-updated{
+    margin-top:18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--charcoal-soft);
+  }
+
+  /* ---------- sections ---------- */
+
+  section{padding:64px 0;}
+  .section-tight{padding:44px 0;}
+
+  .eyebrow{
+    font-size:12px;
+    color:var(--alpenglow);
+    letter-spacing:0.16em;
+    margin-bottom:10px;
+  }
+  h2{
+    font-size:clamp(24px,4vw,32px);
+    font-weight:600;
+    margin-bottom:22px;
+  }
+
+  .story p{
+    margin-bottom:16px;
+    font-size:17px;
+    color:var(--charcoal-soft);
+    max-width:66ch;
+  }
+  .story p.lead{
+    font-size:19px;
+    color:var(--charcoal);
+  }
+  .story strong{color:var(--charcoal); font-weight:600;}
+
+  .divider{
+    height:1px;
+    background:var(--line);
+    margin:0;
+  }
+
+  /* challenge stat grid */
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px,1fr));
+    gap:18px;
+    margin-top:28px;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+  }
+  .sg-num{font-size:28px; font-weight:600; color:var(--pine);}
+  .sg-label{font-size:12.5px; color:var(--charcoal-soft); margin-top:3px; font-family:'IBM Plex Mono',monospace;}
+
+  /* photos */
+  .photo-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:24px;
+  }
+  .photo-slot{
+    aspect-ratio:4/5;
+    background:var(--stone-dim);
+    border:1px dashed var(--charcoal-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--charcoal-soft);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    padding:10px;
+    border-radius:2px;
+  }
+  .photo-slot img{width:100%; height:100%; object-fit:cover; border-radius:2px;}
+  .photo-slot:has(img){border-style:solid; border-color:var(--line); padding:0;}
+  @media (max-width:600px){
+    .photo-grid{grid-template-columns:repeat(2,1fr);}
+  }
+
+  /* how to help */
+  .help-block{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:28px;
+    margin-top:24px;
+  }
+  .help-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .help-row:last-child{border-bottom:none;}
+  .help-label{
+    font-family:'Oswald',sans-serif;
+    font-size:13px;
+    letter-spacing:0.06em;
+    color:var(--charcoal-soft);
+    text-transform:uppercase;
+  }
+  .help-value{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:15px;
+    text-align:right;
+  }
+  .memo-note{
+    margin-top:18px;
+    padding:14px 16px;
+    background:var(--stone-dim);
+    border-left:3px solid var(--gold);
+    font-size:14.5px;
+    color:var(--charcoal-soft);
+  }
+  .memo-note .mono{color:var(--charcoal); font-weight:500;}
+
+  .btn{
+    display:inline-block;
+    background:var(--alpenglow);
+    color:var(--white);
+    padding:14px 30px;
+    border-radius:3px;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    margin-top:22px;
+    transition:transform 0.12s, background 0.15s;
+  }
+  .btn:hover{background:#A6431E; transform:translateY(-1px);}
+  .btn-sub{
+    font-size:12.5px;
+    color:var(--charcoal-soft);
+    margin-top:8px;
+    max-width:42ch;
+  }
+
+  /* suggested amounts — plain text, not clickable-looking */
+  .amounts-line{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--charcoal-soft);
+    margin-top:20px;
+  }
+  .amounts-line b{color:var(--alpenglow); font-weight:600;}
+
+  .ways-heading{
+    font-family:'Oswald', sans-serif;
+    font-size:12.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+    margin-top:30px;
+    margin-bottom:4px;
+  }
+
+  /* trail map */
+  .map-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:20px 20px 8px;
+    margin-top:24px;
+  }
+  .map-svg{width:100%; height:auto; display:block;}
+  .waypoint-dot{fill:var(--pine); stroke:var(--white); stroke-width:1.5;}
+  .map-marker-ring{fill:none; stroke:var(--gold); stroke-width:1.5; opacity:0.5;}
+  .map-marker{fill:var(--gold); stroke:var(--charcoal); stroke-width:2;}
+  .map-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    padding:16px 0 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+  }
+  .map-legend .stop{color:var(--charcoal-soft); opacity:0.5;}
+  .map-legend .stop .mi{color:var(--alpenglow);}
+  .map-legend .stop.passed{opacity:1; color:var(--pine); font-weight:500;}
+  .map-legend .stop.passed .mi{color:var(--alpenglow);}
+
+  /* disclaimer */
+  .disclaimer{
+    background:var(--stone-dim);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .disclaimer p{
+    font-size:14px;
+    color:var(--charcoal-soft);
+    max-width:64ch;
+  }
+  .disclaimer strong{color:var(--charcoal);}
+
+  .org-link{
+    text-decoration:underline;
+    text-decoration-color:var(--alpenglow-dim);
+    text-underline-offset:2px;
+  }
+  .org-link:hover{text-decoration-color:var(--alpenglow);}
+
+  footer{
+    padding:38px 0 60px;
+    text-align:center;
+  }
+  footer p{
+    font-size:13px;
+    color:var(--charcoal-soft);
+    font-family:'IBM Plex Mono',monospace;
+  }
+  footer .flag-line{
+    width:48px;
+    height:4px;
+    background:linear-gradient(90deg, var(--gold), var(--pine), var(--alpenglow));
+    margin:0 auto 16px;
+    border-radius:2px;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="langbar">
+  <div class="langbar-inner">
+    <button class="lang-btn" id="btn-es" onclick="setLang('es')" aria-label="Español">
+      <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="3" height="2" fill="#AA151B"/>
+        <rect width="3" height="1" y="0.5" fill="#F1BF00"/>
+      </svg>
+    </button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-label="English">
+      <svg viewBox="0 0 19 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="19" height="10" fill="#B22234"/>
+        <rect y="0.77" width="19" height="0.77" fill="#FFF"/>
+        <rect y="2.31" width="19" height="0.77" fill="#FFF"/>
+        <rect y="3.85" width="19" height="0.77" fill="#FFF"/>
+        <rect y="5.38" width="19" height="0.77" fill="#FFF"/>
+        <rect y="6.92" width="19" height="0.77" fill="#FFF"/>
+        <rect y="8.46" width="19" height="0.77" fill="#FFF"/>
+        <rect width="7.6" height="5.38" fill="#3C3B6E"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow" data-lang="en">JUNE 24, 2026 — SIERRA NEVADA, CALIFORNIA</p>
+    <p class="hero-eyebrow" data-lang="es">24 DE JUNIO DE 2026 — SIERRA NEVADA, CALIFORNIA</p>
+
+    <h1 data-lang="en">211 Miles of <em>Hope</em></h1>
+    <h1 data-lang="es">211 Millas de <em>Esperanza</em></h1>
+
+    <p class="hero-sub" data-lang="en">Walking the John Muir Trail, from Yosemite to Mount Whitney, for the children of Venezuela.</p>
+    <p class="hero-sub" data-lang="es">Caminando el John Muir Trail, desde Yosemite hasta el Monte Whitney, por los niños de Venezuela.</p>
+
+    <p class="hero-names">Mauricio Fuentes &amp; Alfredo Millán</p>
+  </div>
+
+  <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true">
+    <polygon points="0,140 0,90 150,40 260,80 380,20 520,75 640,10 780,65 900,30 1020,85 1140,45 1200,90 1200,140" fill="#3E5943"></polygon>
+    <polygon points="0,140 0,110 180,70 320,105 460,55 600,100 760,45 900,95 1050,60 1200,110 1200,140" fill="#F3EFE7" opacity="0.95"></polygon>
+  </svg>
+</section>
+
+<!-- ========== TRAIL / PROGRESS STRIP ========== -->
+<div class="trail-strip">
+  <div class="trail-inner">
+    <div class="trail-labels">
+      <span>YOSEMITE · MI 0</span>
+      <span class="end">MT. WHITNEY · MI 211</span>
+    </div>
+    <div class="trail-track">
+      <div class="trail-fill" id="trailFill"></div>
+      <div class="trail-marker" id="trailMarker"></div>
+    </div>
+
+    <div class="trail-stats">
+      <div class="stat">
+        <div class="stat-num mono" id="statMiles">0 / 211</div>
+        <div class="stat-label" data-lang="en">Miles walked</div>
+        <div class="stat-label" data-lang="es">Millas caminadas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num mono" id="statRaised">$0</div>
+        <div class="stat-label" data-lang="en">Estimated raised</div>
+        <div class="stat-label" data-lang="es">Estimado recaudado</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num mono" id="statDays">Day 0</div>
+        <div class="stat-label" data-lang="en">On the trail</div>
+        <div class="stat-label" data-lang="es">En el sendero</div>
+      </div>
+    </div>
+
+    <p class="trail-updated" data-lang="en">Last updated <span id="dateEn"></span> · figures are an estimate, combining Zelle/Venmo memos and reports from <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a> — not a live feed.</p>
+    <p class="trail-updated" data-lang="es">Última actualización <span id="dateEs"></span> · las cifras son un estimado, combinando notas de Zelle/Venmo y reportes de la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a> — no es un feed en vivo.</p>
+  </div>
+</div>
+
+<!-- ========== STORY ========== -->
+<section class="story">
+  <div class="wrap">
+
+    <div data-lang="en">
+      <p class="eyebrow">Why we're walking</p>
+      <h2>A day of strength, turned into a day of loss</h2>
+      <p class="lead">Hi — I'm Mauricio Fuentes. For Venezuelans, June 24th has always meant strength and patriotic joy. It's the day Simón Bolívar sealed our freedom at the Battle of Carabobo, and the day the drums of San Juan Bautista — a UNESCO intangible cultural heritage of humanity — sound with faith and celebration.</p>
+      <p>But this past June, the earth shook. Two devastating earthquakes, magnitude 7.2 and 7.5, tore deep wounds into our country: more than 5,000 lives lost, more than 30,000 people missing, and over 2 million affected.</p>
+      <p>Among all that loss, the most vulnerable are hundreds of children who lost absolutely everything and are now orphaned.</p>
+      <p><strong>Like at Carabobo, today it's our turn to fight for life.</strong> My cousin Alfredo Millán — who's like a brother to me — and I have decided to carry that historical strength, and the beat of those drums, into one of the toughest physical challenges in North America. We'll walk it for them.</p>
+    </div>
+
+    <div data-lang="es">
+      <p class="eyebrow">Por qué caminamos</p>
+      <h2>Un día de fuerza, convertido en un día de pérdida</h2>
+      <p class="lead">¡Hola! Soy Mauricio Fuentes. Históricamente, para nosotros los venezolanos, el 24 de junio es sinónimo de fuerza y júbilo patriótico. Es el día en que Simón Bolívar selló nuestra libertad en la Batalla de Carabobo, y es el día en que los tambores de San Juan Bautista —nuestro patrimonio cultural inmaterial de la humanidad por la UNESCO— resuenan con fe y alegría.</p>
+      <p>Sin embargo, este último junio la tierra tembló. Dos terremotos devastadores de 7.2 y 7.5 de magnitud dejaron heridas profundas en nuestro país: más de 5,000 vidas perdidas, más de 30,000 desaparecidos y más de 2 millones de personas afectadas.</p>
+      <p>Entre tanta desgracia, los más vulnerables son centenares de niños que lo perdieron absolutamente todo y hoy han quedado huérfanos.</p>
+      <p><strong>Como en Carabobo, hoy nos toca luchar por la vida.</strong> Mi primo-hermano Alfredo Millán y yo hemos decidido llevar esa fuerza de nuestra historia y el repique de nuestros tambores en el pecho para enfrentar uno de los retos físicos más exigentes de Norteamérica. Caminaremos por ellos.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ========== THE CHALLENGE ========== -->
+<section class="section-tight">
+  <div class="wrap">
+    <div data-lang="en">
+      <p class="eyebrow">The challenge</p>
+      <h2>The John Muir Trail</h2>
+      <p style="color:var(--charcoal-soft); max-width:60ch;">We'll cross the Sierra Nevada in California, from Yosemite National Park to the summit of Mount Whitney — the highest point in the contiguous United States.</p>
+    </div>
+    <div data-lang="es">
+      <p class="eyebrow">El reto</p>
+      <h2>El John Muir Trail</h2>
+      <p style="color:var(--charcoal-soft); max-width:60ch;">Cruzaremos la Sierra Nevada de California, desde el Parque Nacional Yosemite hasta la cima del Monte Whitney, el punto más alto de los Estados Unidos contiguos.</p>
+    </div>
+
+    <div class="stat-grid">
+      <div>
+        <div class="sg-num">211 mi</div>
+        <div class="sg-label" data-lang="en">340 KM DISTANCE</div>
+        <div class="sg-label" data-lang="es">340 KM DE DISTANCIA</div>
+      </div>
+      <div>
+        <div class="sg-num">46,000 ft</div>
+        <div class="sg-label" data-lang="en">14,000 M ELEVATION GAIN</div>
+        <div class="sg-label" data-lang="es">14,000 M DE ASCENSO</div>
+      </div>
+      <div>
+        <div class="sg-num">18–22</div>
+        <div class="sg-label" data-lang="en">DAYS ON TRAIL</div>
+        <div class="sg-label" data-lang="es">DÍAS EN EL SENDERO</div>
+      </div>
+    </div>
+
+    <!-- Route map: a stylized (not GPS-accurate) trail line. The gold
+         marker position updates automatically from CAMPAIGN_DATA.milesWalked
+         below — no manual dragging needed, just keep that number current.
+         Note: the JMT backcountry has little to no cell signal, so this
+         reflects your last update, not a live location. -->
+    <div class="map-card">
+      <svg class="map-svg" id="trailMap" viewBox="0 0 900 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <path id="trailPath" d="M 30,150 C 110,90 150,190 220,140 C 300,80 330,170 410,120 C 490,65 520,150 600,110 C 670,75 700,145 770,90 C 810,65 830,80 860,45"
+          fill="none" stroke="var(--pine)" stroke-width="2.5" stroke-dasharray="1 9" stroke-linecap="round"/>
+        <g id="mapWaypoints"></g>
+        <circle id="mapMarkerRing" class="map-marker-ring" r="11" cx="30" cy="150"></circle>
+        <circle id="mapMarker" class="map-marker" r="6" cx="30" cy="150"></circle>
+      </svg>
+      <div class="map-legend" id="mapLegendEn" data-lang="en"></div>
+      <div class="map-legend" id="mapLegendEs" data-lang="es"></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ========== PHOTOS ========== -->
+<section class="section-tight">
+  <div class="wrap">
+    <p class="eyebrow" data-lang="en">Along the way</p>
+    <p class="eyebrow" data-lang="es">En el camino</p>
+    <h2 data-lang="en">Daily dispatches from the trail</h2>
+    <h2 data-lang="es">Reportes diarios desde el sendero</h2>
+
+    <!-- This grid fills itself automatically from the /photos folder in the
+         GitHub repo (see PHOTOS_REPO config in the script below). Just
+         upload images to that folder — nothing here needs to be edited.
+         Until photos exist, it falls back to the placeholders below. -->
+    <div class="photo-grid" id="photoGrid">
+      <div class="photo-slot" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot" data-lang="es">Foto próximamente</div>
+      <div class="photo-slot" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot" data-lang="es">Foto próximamente</div>
+      <div class="photo-slot" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot" data-lang="es">Foto próximamente</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ========== HOW TO HELP ========== -->
+<section>
+  <div class="wrap">
+    <div data-lang="en">
+      <p class="eyebrow">How to help</p>
+      <h2>$1+ for every mile we walk</h2>
+      <p style="color:var(--charcoal-soft); max-width:60ch;">100% of what's raised goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, providing food, shelter, and psychological support to children orphaned by the earthquakes.</p>
+      <p class="amounts-line"><b>$1</b> = 1 mile &nbsp;·&nbsp; <b>$5</b> = 5 miles &nbsp;·&nbsp; <b>$10+</b> = direct support for rebuilding</p>
+    </div>
+    <div data-lang="es">
+      <p class="eyebrow">Cómo puedes ayudar</p>
+      <h2>$1+ por cada milla que caminemos</h2>
+      <p style="color:var(--charcoal-soft); max-width:60ch;">El 100% de lo recaudado se dona directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, para garantizar alimentación, refugio y apoyo psicológico a los niños huérfanos por esta tragedia.</p>
+      <p class="amounts-line"><b>$1</b> = 1 milla &nbsp;·&nbsp; <b>$5</b> = 5 millas &nbsp;·&nbsp; <b>$10+</b> = aporte directo a la reconstrucción</p>
+    </div>
+
+    <p class="ways-heading" data-lang="en">Ways to donate</p>
+    <p class="ways-heading" data-lang="es">Formas de donar</p>
+
+    <div class="help-block">
+      <div class="help-row">
+        <span class="help-label">Zelle</span>
+        <span class="help-value mono">proyectodelamanomia@gmail.com</span>
+      </div>
+      <div class="help-row">
+        <span class="help-label">Venmo</span>
+        <span class="help-value mono">@proyectodelamanomia</span>
+      </div>
+    </div>
+
+    <div class="memo-note" data-lang="en">
+      Add <span class="mono">"John Muir Trail Vzla"</span> in the memo/note so your gift is counted toward this walk — and feel free to email your receipt to <span class="mono">proyectodelamanomia@gmail.com</span>.
+    </div>
+    <div class="memo-note" data-lang="es">
+      Agrega <span class="mono">"John Muir Trail Vzla"</span> en la nota/descripción para que tu aporte cuente para esta caminata — y si quieres, envía tu comprobante a <span class="mono">proyectodelamanomia@gmail.com</span>.
+    </div>
+
+    <div data-lang="en">
+      <a class="btn" href="https://fundacionproyectodelamano.org/donate" target="_blank" rel="noopener">Donate now →</a>
+      <p class="btn-sub">Takes you directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>'s official donation page.</p>
+    </div>
+    <div data-lang="es">
+      <a class="btn" href="https://fundacionproyectodelamano.org/donate" target="_blank" rel="noopener">Donar ahora →</a>
+      <p class="btn-sub">Te lleva directamente a la página oficial de donación de la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DISCLAIMER ========== -->
+<section class="disclaimer section-tight">
+  <div class="wrap">
+    <p data-lang="en"><strong>About this page —</strong> this is an independent, unofficial tracker built by family to follow Mauricio's walk. It does not collect, hold, or process any funds. Every donation goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a> through the official channels above.</p>
+    <p data-lang="es"><strong>Sobre esta página —</strong> esta es una página de seguimiento independiente y no oficial, hecha por la familia para acompañar la caminata de Mauricio. No recolecta, retiene ni procesa fondos. Cada donación va directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a> a través de los canales oficiales arriba.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="flag-line"></div>
+  <p data-lang="en">211 MILES OF HOPE · YOSEMITE → MT. WHITNEY · 2026</p>
+  <p data-lang="es">211 MILLAS DE ESPERANZA · YOSEMITE → MT. WHITNEY · 2026</p>
+</footer>
+
+<script>
+  /* ============================================================
+     UPDATE PROGRESS HERE.
+     Edit these values whenever you have new numbers — nothing
+     else in the file needs to change. The day count and the map
+     marker both calculate themselves from these.
+     ============================================================ */
+  const CAMPAIGN_DATA = {
+    milesWalked: 0,             // how many of the 211 miles they've completed
+    totalMiles: 211,
+    amountRaised: 0,            // estimated dollars raised so far
+    startDate: "2026-08-04",    // trek start date, YYYY-MM-DD — confirm 08-04 vs 08-05
+    lastUpdated: "2026-07-27"   // format: YYYY-MM-DD
+  };
+
+  // Trail checkpoints used for the route map + legend below.
+  // "mile" should roughly match real JMT mile markers if you swap them.
+  const WAYPOINTS = [
+    { mile: 0,   en: "Yosemite Valley",  es: "Valle de Yosemite" },
+    { mile: 23,  en: "Tuolumne Meadows", es: "Tuolumne Meadows" },
+    { mile: 60,  en: "Red's Meadow",     es: "Red's Meadow" },
+    { mile: 108, en: "Muir Trail Ranch", es: "Muir Trail Ranch" },
+    { mile: 179, en: "Kearsarge Pass",   es: "Paso Kearsarge" },
+    { mile: 211, en: "Mt. Whitney",      es: "Monte Whitney" }
+  ];
+
+  // Photos auto-load from this GitHub repo folder — just upload images
+  // to /photos in the repo, nothing here needs to change afterward.
+  // ⚠️ FILL IN "owner" WITH YOUR GITHUB USERNAME BEFORE PUBLISHING.
+  const PHOTOS_REPO = {
+    owner: "YOUR-GITHUB-USERNAME",
+    name: "211-millas-de-esperanza",
+    branch: "main",
+    folder: "photos",
+    maxPhotos: 9   // most recent N photos shown, by filename order
+  };
+  /* ============================================================ */
+
+  let currentLang = 'en';
+
+  function computeDay() {
+    const start = new Date(CAMPAIGN_DATA.startDate + 'T00:00:00');
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const diff = Math.round((today - start) / 86400000);
+    if (diff < 0) return { started:false, day:0, start };
+    return { started:true, day:diff + 1, start };
+  }
+
+  function renderDayText() {
+    const info = computeDay();
+    const el = document.getElementById('statDays');
+    if (!info.started) {
+      const label = currentLang === 'es' ? 'Comienza ' : 'Starts ';
+      const formatted = info.start.toLocaleDateString(currentLang === 'es' ? 'es-ES' : 'en-US', {month:'short', day:'numeric'});
+      el.textContent = label + formatted;
+    } else {
+      el.textContent = (currentLang === 'es' ? 'Día ' : 'Day ') + info.day;
+    }
+  }
+
+  function renderMap() {
+    const path = document.getElementById('trailPath');
+    const totalLen = path.getTotalLength();
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const group = document.getElementById('mapWaypoints');
+    group.innerHTML = '';
+
+    WAYPOINTS.forEach(function(wp){
+      const pt = path.getPointAtLength((wp.mile / CAMPAIGN_DATA.totalMiles) * totalLen);
+      const dot = document.createElementNS(svgNS, 'circle');
+      dot.setAttribute('cx', pt.x);
+      dot.setAttribute('cy', pt.y);
+      dot.setAttribute('r', 4);
+      dot.setAttribute('class', 'waypoint-dot');
+      group.appendChild(dot);
+    });
+
+    const pct = Math.min(1, CAMPAIGN_DATA.milesWalked / CAMPAIGN_DATA.totalMiles);
+    const cur = path.getPointAtLength(pct * totalLen);
+    ['mapMarker','mapMarkerRing'].forEach(function(id){
+      const el = document.getElementById(id);
+      el.setAttribute('cx', cur.x);
+      el.setAttribute('cy', cur.y);
+    });
+
+    ['mapLegendEn','mapLegendEs'].forEach(function(id){
+      const lang = id === 'mapLegendEn' ? 'en' : 'es';
+      const wrap = document.getElementById(id);
+      wrap.innerHTML = WAYPOINTS.map(function(wp){
+        const passed = CAMPAIGN_DATA.milesWalked >= wp.mile ? ' passed' : '';
+        return '<span class="stop' + passed + '"><span class="mi">MI ' + wp.mile + '</span> ' + wp[lang] + '</span>';
+      }).join('');
+    });
+  }
+
+  function loadPhotos() {
+    // Skip quietly if the username placeholder hasn't been filled in yet —
+    // keeps the "coming soon" placeholders showing instead of erroring.
+    if (PHOTOS_REPO.owner === "YOUR-GITHUB-USERNAME") return;
+
+    const apiUrl = 'https://api.github.com/repos/' + PHOTOS_REPO.owner + '/' +
+      PHOTOS_REPO.name + '/contents/' + PHOTOS_REPO.folder + '?ref=' + PHOTOS_REPO.branch;
+
+    fetch(apiUrl)
+      .then(function(res){ if (!res.ok) throw new Error('no photos folder yet'); return res.json(); })
+      .then(function(files){
+        const imageExt = /\.(jpe?g|png|webp)$/i;
+        const images = files
+          .filter(function(f){ return f.type === 'file' && imageExt.test(f.name); })
+          .sort(function(a,b){ return b.name.localeCompare(a.name); }) // newest filename first
+          .slice(0, PHOTOS_REPO.maxPhotos);
+
+        if (images.length === 0) return; // keep placeholders
+
+        const grid = document.getElementById('photoGrid');
+        grid.innerHTML = images.map(function(f){
+          return '<div class="photo-slot"><img src="' + f.download_url + '" alt="211 Millas de Esperanza — John Muir Trail" loading="lazy"></div>';
+        }).join('');
+      })
+      .catch(function(){ /* stay on placeholders — no photos yet, or offline */ });
+  }
+
+  function render() {
+    const pct = Math.min(100, (CAMPAIGN_DATA.milesWalked / CAMPAIGN_DATA.totalMiles) * 100);
+    document.getElementById('trailFill').style.width = pct + '%';
+    document.getElementById('trailMarker').style.left = pct + '%';
+    document.getElementById('statMiles').textContent = CAMPAIGN_DATA.milesWalked + ' / ' + CAMPAIGN_DATA.totalMiles;
+    document.getElementById('statRaised').textContent = '$' + CAMPAIGN_DATA.amountRaised.toLocaleString('en-US');
+
+    const d = new Date(CAMPAIGN_DATA.lastUpdated + 'T00:00:00');
+    document.getElementById('dateEn').textContent = d.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+    document.getElementById('dateEs').textContent = d.toLocaleDateString('es-ES', {month:'long', day:'numeric', year:'numeric'});
+
+    renderDayText();
+    renderMap();
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.setAttribute('data-active-lang', lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    renderDayText();
+  }
+
+  render();
+  setLang('en'); // defaults to English on every visit, per request
+  loadPhotos();
+</script>
+
+</body>
+</html>
