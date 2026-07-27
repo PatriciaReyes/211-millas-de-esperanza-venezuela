@@ -217,6 +217,49 @@
     margin-top:26px;
   }
   .stat{flex:1 1 140px;}
+
+  /* compact donate CTA — sits right under the progress strip */
+  .cta-bar{
+    background:var(--charcoal);
+    padding:18px 0;
+  }
+  .cta-inner{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+    text-align:center;
+  }
+  .cta-text{
+    color:var(--stone-dim);
+    font-size:14px;
+  }
+  .cta-btn{
+    display:inline-block;
+    background:var(--alpenglow);
+    color:var(--white);
+    padding:10px 22px;
+    border-radius:3px;
+    font-family:'Oswald',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    text-decoration:none;
+    transition:background 0.15s, transform 0.12s;
+  }
+  .cta-btn:hover{background:#A6431E; transform:translateY(-1px);}
+  .cta-hint{
+    text-align:center;
+    color:var(--pine-dim);
+    font-size:11.5px;
+    margin-top:10px;
+  }
+  .cta-hint b{color:var(--gold); font-weight:500;}
   .stat-num{
     font-size:26px;
     font-weight:600;
@@ -541,6 +584,18 @@
   </div>
 </div>
 
+<!-- ========== COMPACT DONATE CTA ========== -->
+<div class="cta-bar">
+  <div class="cta-inner">
+    <span class="cta-text" data-lang="en">Every mile counts — help us reach the goal.</span>
+    <span class="cta-text" data-lang="es">Cada milla cuenta — ayúdanos a llegar a la meta.</span>
+    <div data-lang="en"><a class="cta-btn" href="#donate">Donate now</a></div>
+    <div data-lang="es"><a class="cta-btn" href="#donate">Donar ahora</a></div>
+  </div>
+  <p class="cta-hint mono" data-lang="en">Paying by Zelle or Venmo? Add <b>"John Muir Trail Vzla"</b> in the memo.</p>
+  <p class="cta-hint mono" data-lang="es">¿Pagas por Zelle o Venmo? Agrega <b>"John Muir Trail Vzla"</b> en la nota.</p>
+</div>
+
 <!-- ========== STORY ========== -->
 <section class="story">
   <div class="wrap">
@@ -635,8 +690,11 @@
          exist, it falls back to the placeholders below. -->
     <div class="photo-grid" id="photoGrid">
       <div class="photo-slot" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot" data-lang="es">Foto próximamente</div>
       <div class="photo-slot" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot" data-lang="es">Foto próximamente</div>
       <div class="photo-slot" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot" data-lang="es">Foto próximamente</div>
     </div>
   </div>
 </section>
@@ -644,7 +702,7 @@
 <div class="wrap"><div class="divider"></div></div>
 
 <!-- ========== HOW TO HELP ========== -->
-<section>
+<section id="donate" style="scroll-margin-top:60px;">
   <div class="wrap">
     <div data-lang="en">
       <p class="eyebrow">How to help</p>
@@ -735,6 +793,7 @@
   // account, API, or rate limits involved. Add a line to that file for
   // each photo you upload to /photos. See manifest.json for the format.
   const PHOTOS_MANIFEST_URL = 'photos/manifest.json';
+  /* ============================================================ */
 
   let currentLang = 'en';
 
