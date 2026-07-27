@@ -1,4 +1,19 @@
 {
   "photos": [
+    {
+      "file": "placeholder1.png",
+      "captionEn": "Walking for Venezuela's childre",
+      "captionEs": "Caminando por los niños de Venezuela"
+    },
+    {
+      "file": "placeholder2.png",
+      "captionEn": "Starting the trail",
+      "captionEs": "Comenzando el sendero"
+    },
+    {
+      "file": "placeholder3.png",
+      "captionEn": "Horizon in Yosemite",
+      "captionEs": "Horizonte en Yosemite"
+    }
   ]
 }
