@@ -1,19 +1,34 @@
 {
   "photos": [
     {
-      "file": "placeholder1.png",
-      "captionEn": "Walking for Venezuela's children",
-      "captionEs": "Caminando por los niños de Venezuela"
+      "file": "jmt1.webp",
+      "captionEn": "",
+      "captionEs": ""
     },
     {
-      "file": "placeholder2.png",
-      "captionEn": "Starting the trail",
-      "captionEs": "Comenzando el sendero"
+      "file": "jmt3.webp",
+      "captionEn": "",
+      "captionEs": ""
     },
     {
-      "file": "placeholder3.png",
-      "captionEn": "Horizon in Yosemite",
-      "captionEs": "Horizonte en Yosemite"
+      "file": "sequoia.jpg",
+      "captionEn": "",
+      "captionEs": ""
+    },
+    {
+      "file": "yosemite1.jpg",
+      "captionEn": "",
+      "captionEs": ""
+    },
+    {
+      "file": "yosemite-bear.jpeg",
+      "captionEn": "",
+      "captionEs": ""
+    },
+    {
+      "file": "yosemite2.jpg",
+      "captionEn": "",
+      "captionEs": ""
     }
   ]
 }

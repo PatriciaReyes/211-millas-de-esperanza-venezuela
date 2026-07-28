@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>211 Miles of Hope / 211 Millas de Esperanza</title>
+<title>John Muir Trail for Venezuela</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,opt@0,9..40;1,9..40&family=Source+Serif+4:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -119,19 +119,19 @@
     background:var(--charcoal);
     color:var(--stone);
     overflow:hidden;
-    padding:72px 0 0;
+    padding:56px 0 0;
   }
   .hero-eyebrow{
     text-align:center;
-    font-size:13px;
+    font-size:12px;
     color:var(--gold);
     letter-spacing:0.18em;
-    margin-bottom:18px;
+    margin-bottom:10px;
   }
   .hero h1{
     text-align:center;
-    font-size:clamp(34px, 7vw, 64px);
-    line-height:1.04;
+    font-size:clamp(30px, 6.2vw, 52px);
+    line-height:1.05;
     font-weight:700;
     color:var(--white);
     padding:0 12px;
@@ -142,17 +142,17 @@
   }
   .hero-sub{
     max-width:560px;
-    margin:22px auto 0;
+    margin:16px auto 0;
     text-align:center;
-    font-size:17px;
+    font-size:16px;
     color:var(--stone-dim);
     padding:0 20px;
   }
   .hero-names{
     text-align:center;
-    margin-top:14px;
+    margin-top:12px;
     font-family:'IBM Plex Mono', monospace;
-    font-size:13px;
+    font-size:12px;
     color:var(--pine-dim);
     letter-spacing:0.04em;
   }
@@ -160,8 +160,9 @@
   /* mountain silhouette */
   .ridge{
     width:100%;
+    height:72px;
     display:block;
-    margin-top:56px;
+    margin-top:26px;
   }
 
   /* trail progress strip */
@@ -173,7 +174,7 @@
   .trail-inner{
     max-width:920px;
     margin:0 auto;
-    padding:34px 24px 30px;
+    padding:20px 24px 18px;
   }
   .trail-labels{
     display:flex;
@@ -213,15 +214,15 @@
   .trail-stats{
     display:flex;
     flex-wrap:wrap;
-    gap:28px;
-    margin-top:26px;
+    gap:20px;
+    margin-top:16px;
   }
   .stat{flex:1 1 140px;}
 
   /* compact donate CTA — sits right under the progress strip */
   .cta-bar{
     background:var(--charcoal);
-    padding:18px 0;
+    padding:14px 0;
   }
   .cta-inner{
     max-width:920px;
@@ -261,7 +262,7 @@
   }
   .cta-hint b{color:var(--gold); font-weight:500;}
   .stat-num{
-    font-size:26px;
+    font-size:22px;
     font-weight:600;
     color:var(--alpenglow);
   }
@@ -271,7 +272,7 @@
     margin-top:2px;
   }
   .trail-updated{
-    margin-top:18px;
+    margin-top:10px;
     font-family:'IBM Plex Mono', monospace;
     font-size:11.5px;
     color:var(--charcoal-soft);
@@ -302,7 +303,6 @@
     text-justify:inter-word;
   }
   .story p.lead{
-    font-size:19px;
     color:var(--charcoal);
   }
   .story strong{color:var(--charcoal); font-weight:600;}
@@ -359,6 +359,12 @@
   }
   @media (max-width:600px){
     .photo-grid{grid-template-columns:repeat(2,1fr);}
+    .hero{padding-top:30px;}
+    .ridge{height:40px; margin-top:16px;}
+    .trail-inner{padding:16px 20px 14px;}
+    .cta-inner{gap:10px;}
+    .cta-text{font-size:13px;}
+    .map-legend{gap:6px 12px; font-size:11px;}
   }
 
   /* how to help */
@@ -479,6 +485,7 @@
   .disclaimer strong{color:var(--charcoal);}
 
   .org-link{
+    color:var(--alpenglow);
     text-decoration:underline;
     text-decoration-color:var(--alpenglow-dim);
     text-underline-offset:2px;
@@ -531,14 +538,11 @@
 <!-- ========== HERO ========== -->
 <section class="hero">
   <div class="wrap">
-    <p class="hero-eyebrow" data-lang="en">JUNE 24, 2026 — SIERRA NEVADA, CALIFORNIA</p>
-    <p class="hero-eyebrow" data-lang="es">24 DE JUNIO DE 2026 — SIERRA NEVADA, CALIFORNIA</p>
+    <h1 data-lang="en">John Muir Trail for <em>Venezuela</em></h1>
+    <h1 data-lang="es">John Muir Trail para <em>Venezuela</em></h1>
 
-    <h1 data-lang="en">211 Miles of <em>Hope</em></h1>
-    <h1 data-lang="es">211 Millas de <em>Esperanza</em></h1>
-
-    <p class="hero-sub" data-lang="en">Walking the John Muir Trail, from Yosemite to Mount Whitney, for the children of Venezuela.</p>
-    <p class="hero-sub" data-lang="es">Caminando el John Muir Trail, desde Yosemite hasta el Monte Whitney, por los niños de Venezuela.</p>
+    <p class="hero-sub" data-lang="en">Walking 211 miles from Yosemite to Mount Whitney <br>for the children of Venezuela.</p>
+    <p class="hero-sub" data-lang="es">Caminando 211 millas desde Yosemite hasta el Monte Whitney <br>por los niños de Venezuela.</p>
 
     <p class="hero-names">Mauricio Fuentes &amp; Alfredo Millán</p>
   </div>
@@ -592,8 +596,8 @@
     <div data-lang="en"><a class="cta-btn" href="#donate">Donate now</a></div>
     <div data-lang="es"><a class="cta-btn" href="#donate">Donar ahora</a></div>
   </div>
-  <p class="cta-hint mono" data-lang="en">Donating through Zelle or Venmo? Add <b>"John Muir Trail Vzla"</b> in the memo.</p>
-  <p class="cta-hint mono" data-lang="es">¿Donas por Zelle o Venmo? Agrega <b>"John Muir Trail Vzla"</b> en la descripción.</p>
+  <p class="cta-hint mono" data-lang="en">Paying by Zelle or Venmo? Add <b>"John Muir Trail Vzla"</b> in the memo.</p>
+  <p class="cta-hint mono" data-lang="es">¿Pagas por Zelle o Venmo? Agrega <b>"John Muir Trail Vzla"</b> en la nota.</p>
 </div>
 
 <!-- ========== STORY ========== -->
@@ -655,11 +659,12 @@
       </div>
     </div>
 
-    <!-- Route map: a stylized (not GPS-accurate) trail line. The gold
-         marker position updates automatically from CAMPAIGN_DATA.milesWalked
-         below — no manual dragging needed, just keep that number current.
-         Note: the JMT backcountry has little to no cell signal, so this
-         reflects your last update, not a live location. -->
+    <!-- Route map: a stylized (not GPS-accurate) trail line — original
+         artwork, so no copyright concerns. The gold marker position
+         updates automatically from CAMPAIGN_DATA.milesWalked below —
+         no manual dragging needed, just keep that number current.
+         Note: the JMT backcountry has little to no cell signal, so
+         this reflects your last update, not a live location. -->
     <div class="map-card">
       <svg class="map-svg" id="trailMap" viewBox="0 0 900 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <path id="trailPath" d="M 30,150 C 110,90 150,190 220,140 C 300,80 330,170 410,120 C 490,65 520,150 600,110 C 670,75 700,145 770,90 C 810,65 830,80 860,45"
@@ -668,8 +673,8 @@
         <circle id="mapMarkerRing" class="map-marker-ring" r="11" cx="30" cy="150"></circle>
         <circle id="mapMarker" class="map-marker" r="6" cx="30" cy="150"></circle>
       </svg>
-      <div class="map-legend" id="mapLegendEn" data-lang="en"></div>
-      <div class="map-legend" id="mapLegendEs" data-lang="es"></div>
+      <div data-lang="en"><div class="map-legend" id="mapLegendEn"></div></div>
+      <div data-lang="es"><div class="map-legend" id="mapLegendEs"></div></div>
     </div>
   </div>
 </section>
@@ -689,12 +694,12 @@
          manifest.json — nothing here needs to be edited. Until photos
          exist, it falls back to the placeholders below. -->
     <div class="photo-grid" id="photoGrid">
-      <div class="photo-slot" data-lang="en">Photo coming soon</div>
-      <div class="photo-slot" data-lang="es">Foto próximamente</div>
-      <div class="photo-slot" data-lang="en">Photo coming soon</div>
-      <div class="photo-slot" data-lang="es">Foto próximamente</div>
-      <div class="photo-slot" data-lang="en">Photo coming soon</div>
-      <div class="photo-slot" data-lang="es">Foto próximamente</div>
+      <div data-lang="en"><div class="photo-slot">Photo coming soon</div></div>
+      <div data-lang="es"><div class="photo-slot">Foto próximamente</div></div>
+      <div data-lang="en"><div class="photo-slot">Photo coming soon</div></div>
+      <div data-lang="es"><div class="photo-slot">Foto próximamente</div></div>
+      <div data-lang="en"><div class="photo-slot">Photo coming soon</div></div>
+      <div data-lang="es"><div class="photo-slot">Foto próximamente</div></div>
     </div>
   </div>
 </section>
