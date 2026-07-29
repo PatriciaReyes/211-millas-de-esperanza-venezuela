@@ -82,8 +82,29 @@
     margin:0 auto;
     padding:10px 24px;
     display:flex;
-    justify-content:flex-end;
-    gap:2px;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .site-nav{display:flex; gap:4px;}
+  .lang-buttons{display:flex; gap:2px;}
+  .nav-tab{
+    display:inline-block;
+    padding:6px 11px;
+    font-family:'Oswald', sans-serif;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--stone-dim);
+    text-decoration:none;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .nav-tab:hover{color:var(--stone);}
+  .nav-tab.active{background:rgba(217,160,46,0.18); color:var(--gold); font-weight:600;}
+  @media (max-width:640px){
+    .nav-tab{font-size:10.5px; padding:6px 8px;}
   }
   .lang-btn{
     background:none;
@@ -119,7 +140,7 @@
     background:var(--charcoal);
     color:var(--stone);
     overflow:hidden;
-    padding:56px 0 0;
+    padding:56px 0 240px;
   }
   .hero-eyebrow{
     text-align:center;
@@ -158,12 +179,16 @@
   }
 
   /* mountain silhouette */
-  .ridge{
+  .ridge-green{
+    position:absolute;
+    left:0;
+    bottom:0;
     width:100%;
-    height:72px;
-    display:block;
-    margin-top:26px;
+    height:370px;
+    z-index:0;
+    pointer-events:none;
   }
+  .hero .wrap{position:relative; z-index:1;}
 
   /* trail progress strip */
   .trail-strip{
@@ -295,9 +320,6 @@
     text-align:justify;
     text-justify:inter-word;
   }
-  .story p.lead{
-    color:var(--charcoal);
-  }
   .story strong{color:var(--charcoal); font-weight:600;}
   .story-cta{
     display:inline-block;
@@ -312,6 +334,15 @@
     text-underline-offset:3px;
   }
   .story-cta:hover{text-decoration-color:var(--alpenglow);}
+  .read-more-link{
+    color:var(--alpenglow);
+    font-weight:600;
+    text-decoration:underline;
+    text-decoration-color:var(--alpenglow-dim);
+    text-underline-offset:2px;
+    white-space:nowrap;
+  }
+  .read-more-link:hover{text-decoration-color:var(--alpenglow);}
 
   .divider{
     height:1px;
@@ -364,13 +395,13 @@
     line-height:1.3;
   }
   @media (max-width:600px){
+    body{padding-top:76px;}
     .photo-grid{grid-template-columns:repeat(2,1fr);}
-    .hero{padding-top:30px;}
-    .ridge{height:40px; margin-top:16px;}
+    .hero{padding-top:30px; padding-bottom:170px;}
+    .ridge-green{height:240px;}
     .trail-inner{padding:16px 20px 14px;}
     .cta-inner{gap:10px;}
     .cta-text{font-size:13px;}
-    .map-legend{gap:6px 12px; font-size:11px;}
   }
 
   /* how to help */
@@ -433,15 +464,6 @@
    
   }
 
-  /* suggested amounts — plain text, not clickable-looking */
-  .amounts-line{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:14px;
-    color:var(--charcoal-soft);
-    margin-top:20px;
-  }
-  .amounts-line b{color:var(--alpenglow); font-weight:600;}
-
   .ways-heading{
     font-family:'Oswald', sans-serif;
     font-size:12.5px;
@@ -460,22 +482,19 @@
     padding:20px 20px 8px;
     margin-top:24px;
   }
-  .map-svg{width:100%; height:auto; display:block;}
-  .waypoint-dot{fill:var(--pine); stroke:var(--white); stroke-width:1.5;}
-  .map-marker-ring{fill:none; stroke:var(--gold); stroke-width:1.5; opacity:0.5;}
-  .map-marker{fill:var(--gold); stroke:var(--charcoal); stroke-width:2;}
-  .map-legend{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px 18px;
-    padding:16px 0 14px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11.5px;
+  .map-img{width:100%; height:auto; display:block; border-radius:2px;}
+  .map-img-fallback{
+    width:100%;
+    aspect-ratio:16/9;
+    background:var(--stone-dim);
+    border:1px dashed var(--charcoal-soft);
+    border-radius:2px;
+    align-items:center;
+    justify-content:center;
+    color:var(--charcoal-soft);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
   }
-  .map-legend .stop{color:var(--charcoal-soft); opacity:0.5;}
-  .map-legend .stop .mi{color:var(--alpenglow);}
-  .map-legend .stop.passed{opacity:1; color:var(--pine); font-weight:500;}
-  .map-legend .stop.passed .mi{color:var(--alpenglow);}
 
   /* disclaimer */
   .disclaimer{
@@ -520,6 +539,13 @@
 
 <div class="langbar">
   <div class="langbar-inner">
+    <nav class="site-nav">
+      <div data-lang="en"><a class="nav-tab active" href="index.html">Home</a></div>
+      <div data-lang="es"><a class="nav-tab active" href="index.html">Inicio</a></div>
+      <div data-lang="en"><a class="nav-tab" href="venezuela.html">Earthquake in Venezuela</a></div>
+      <div data-lang="es"><a class="nav-tab" href="venezuela.html">Terremoto en Venezuela</a></div>
+    </nav>
+    <div class="lang-buttons">
     <button class="lang-btn" id="btn-es" onclick="setLang('es')" aria-label="Español">
       <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect width="3" height="2" fill="#AA151B"/>
@@ -538,6 +564,7 @@
         <rect width="7.6" height="5.38" fill="#3C3B6E"/>
       </svg>
     </button>
+    </div>
   </div>
 </div>
 
@@ -547,15 +574,17 @@
     <h1 data-lang="en">John Muir Trail for <em>Venezuela</em></h1>
     <h1 data-lang="es">John Muir Trail para <em>Venezuela</em></h1>
 
-    <p class="hero-sub" data-lang="en">Walking 211 miles from Yosemite to Mount Whitney <br>for the children of Venezuela.</p>
-    <p class="hero-sub" data-lang="es">Caminando 211 millas desde Yosemite hasta el Monte Whitney <br>por los niños de Venezuela.</p>
+    <p class="hero-sub" data-lang="en">Walking 211 miles of hope from Yosemite to Mount Whitney <br>for the children of Venezuela.</p>
+    <p class="hero-sub" data-lang="es">Caminando 211 millas de esperanza desde Yosemite hasta el Monte Whitney <br>por los niños de Venezuela.</p>
 
     <p class="hero-names">Mauricio Fuentes &amp; Alfredo Millán</p>
   </div>
 
-  <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true">
-    <polygon points="0,140 0,90 150,40 260,80 380,20 520,75 640,10 780,65 900,30 1020,85 1140,45 1200,90 1200,140" fill="#3E5943"></polygon>
-    <polygon points="0,140 0,110 180,70 320,105 460,55 600,100 760,45 900,95 1050,60 1200,110 1200,140" fill="#F3EFE7" opacity="0.95"></polygon>
+  <svg class="ridge-green" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true">
+    <!-- Traced pixel-by-pixel from a real JMT elevation chart (Happy
+         Isles 4,035ft to Mt. Whitney 14,505ft, back down to Whitney
+         Portal) for an accurate silhouette. -->
+    <polygon points="0,140 2.6,139.2 7.8,134.7 13,130.1 18.2,125.6 23.4,121.3 28.6,116.8 33.8,112.3 39,108.0 44.2,103.4 49.4,98.9 54.5,94.4 59.7,90.1 64.9,85.6 70.1,81.2 75.3,76.7 80.5,72.2 85.7,67.7 90.9,66.0 96.1,68.9 101.3,71.6 106.5,74.5 111.7,77.3 116.9,80.2 122.1,83.1 127.3,83.9 132.5,81.5 137.7,79.4 142.9,78.8 148.1,78.2 153.2,77.5 158.4,76.9 163.6,76.5 168.8,73.8 174,69.7 179.2,65.6 184.4,61.5 189.6,57.4 194.8,53.3 200,49.2 205.2,52.7 210.4,57.4 215.6,62.3 220.8,67.1 226,66.5 231.2,62.3 236.4,62.5 241.6,65.2 246.8,66.2 251.9,67.1 257.1,69.3 262.3,73.0 267.5,76.9 272.7,75.9 277.9,72.2 283.1,68.1 288.3,73.6 293.5,83.5 298.7,86.2 303.9,91.1 309.1,95.0 314.3,89.3 319.5,83.5 324.7,77.8 329.9,79.2 335.1,80.0 340.3,75.5 345.5,71.0 350.6,66.5 355.8,61.9 361,60.7 366.2,62.8 371.4,64.2 376.6,62.1 381.8,59.3 387,57.0 392.2,63.4 397.4,68.9 402.6,70.6 407.8,72.2 413,73.8 418.2,73.0 423.4,69.3 428.6,65.2 433.8,60.7 439,56.4 444.2,58.4 449.4,65.4 454.5,72.6 459.7,79.6 464.9,86.8 470.1,91.9 475.3,86.8 480.5,79.4 485.7,72.2 490.9,66.9 496.1,69.3 501.3,72.4 506.5,75.7 511.7,75.1 516.9,71.0 522.1,66.9 527.3,62.8 532.5,58.6 537.7,54.1 542.9,54.5 548.1,58.6 553.2,60.3 558.4,61.3 563.6,65.4 568.8,70.2 574,74.9 579.2,79.8 584.4,84.5 589.6,89.3 594.8,92.7 600,91.3 605.2,88.8 610.4,86.4 615.6,83.9 620.8,81.5 626,79.0 631.2,76.7 636.4,74.1 641.6,71.6 646.8,68.3 651.9,62.8 657.1,57.2 662.3,51.9 667.5,46.5 672.7,41.2 677.9,37.1 683.1,41.2 688.3,45.9 693.5,50.6 698.7,55.4 703.9,60.1 709.1,64.8 714.3,69.5 719.5,74.1 724.7,78.8 729.9,83.5 735.1,87.2 740.3,84.1 745.5,80.0 750.6,75.5 755.8,71.4 761,67.3 766.2,63.2 771.4,58.6 776.6,54.5 781.8,50.4 787,46.3 792.2,42.2 797.4,37.7 802.6,34.8 807.8,38.7 813,44.1 818.2,49.4 823.4,54.7 828.6,59.1 833.8,56.6 839,52.1 844.2,47.6 849.4,42.8 854.5,38.1 859.7,41.6 864.9,51.5 870.1,60.9 875.3,70.6 880.5,78.8 885.7,80.8 890.9,82.9 896.1,83.9 901.3,79.0 906.5,73.0 911.7,66.9 916.9,60.9 922.1,55.4 927.3,53.7 932.5,52.1 937.7,48.2 942.9,41.8 948.1,44.7 953.2,49.2 958.4,53.9 963.6,58.4 968.8,63.2 974,67.7 979.2,70.4 984.4,64.2 989.6,56.4 994.8,48.6 1000,40.6 1005.2,33.8 1010.4,28.4 1015.6,23.3 1020.8,21.9 1026,26.8 1031.2,31.7 1036.4,36.9 1041.6,42.0 1046.8,46.9 1051.9,51.7 1057.1,52.9 1062.3,54.1 1067.5,55.2 1072.7,56.2 1077.9,57.4 1083.1,58.6 1088.3,58.2 1093.5,56.6 1098.7,54.9 1103.9,53.7 1109.1,52.1 1114.3,47.3 1119.5,39.5 1124.7,32.1 1129.9,24.7 1135.1,17.4 1140.3,9.5 1145.5,5.8 1150.6,11.2 1155.8,16.7 1161,22.3 1166.2,27.6 1171.4,33.2 1176.6,42.8 1181.8,58.6 1187,74.5 1192.2,82.5 1197.4,85.8 1200,87.2 1200,140" fill="#3E5943"></polygon>
   </svg>
 </section>
 
@@ -599,8 +628,8 @@
   <div class="cta-inner">
     <span class="cta-text" data-lang="en">Every mile counts — every dollar helps.</span>
     <span class="cta-text" data-lang="es">Cada milla cuenta — cada dólar ayuda.</span>
-    <div data-lang="en"><a class="cta-btn" href="#donate">Donate now</a></div>
-    <div data-lang="es"><a class="cta-btn" href="#donate">Donar ahora</a></div>
+    <div data-lang="en"><a class="cta-btn" href="#donate">How to Help</a></div>
+    <div data-lang="es"><a class="cta-btn" href="#donate">Cómo Ayudar</a></div>
   </div>
 </div>
 
@@ -612,8 +641,7 @@
       <p class="eyebrow">Why we're walking</p>
       <h2>A day of strength, turned into a day of loss</h2>
       <p class="lead">Hi — I'm Mauricio Fuentes. For Venezuelans, June 24th has always meant strength and patriotic joy. It's the day Simón Bolívar sealed our freedom at the Battle of Carabobo, and the day the drums of San Juan Bautista — a UNESCO intangible cultural heritage of humanity — sound with faith and celebration.</p>
-      <p>But this past June, the earth shook. Two devastating earthquakes, magnitude 7.2 and 7.5, tore deep wounds into our country: more than 5,000 lives lost, more than 30,000 people missing, and over 2 million affected.</p>
-      <p>Among all that loss, the most vulnerable are hundreds of children who lost absolutely everything and are now orphaned.</p>
+      <p>But this past June, the earth shook. Two devastating earthquakes, magnitude 7.2 and 7.5, tore deep wounds into our country: more than 5,000 lives lost, more than 30,000 people missing, and over 2 million affected. Among all that loss, the most vulnerable are hundreds of children who lost absolutely everything and are now orphaned. <a class="read-more-link" href="venezuela.html" target="_blank" rel="noopener">Read more →</a></p>
       <p><strong>Like at Carabobo, today it's our turn to fight for life.</strong> My cousin Alfredo Millán — who's like a brother to me — and I have decided to carry that historical strength, and the beat of those drums, into one of the toughest physical challenges in North America. We'll walk it for them.</p>
       <a class="story-cta" href="#donate">Help us make it happen — Donate now →</a>
     </div>
@@ -622,8 +650,7 @@
       <p class="eyebrow">Por qué caminamos</p>
       <h2>Un día de fuerza, convertido en un día de pérdida</h2>
       <p class="lead">¡Hola! Soy Mauricio Fuentes. Históricamente, para nosotros los venezolanos, el 24 de junio es sinónimo de fuerza y júbilo patriótico. Es el día en que Simón Bolívar selló nuestra libertad en la Batalla de Carabobo, y es el día en que los tambores de San Juan Bautista —nuestro patrimonio cultural inmaterial de la humanidad por la UNESCO— resuenan con fe y alegría.</p>
-      <p>Sin embargo, este último junio la tierra tembló. Dos terremotos devastadores de 7.2 y 7.5 de magnitud dejaron heridas profundas en nuestro país: más de 5,000 vidas perdidas, más de 30,000 desaparecidos y más de 2 millones de personas afectadas.</p>
-      <p>Entre tanta desgracia, los más vulnerables son centenares de niños que lo perdieron absolutamente todo y hoy han quedado huérfanos.</p>
+      <p>Sin embargo, este último junio la tierra tembló. Dos terremotos devastadores de 7.2 y 7.5 de magnitud dejaron heridas profundas en nuestro país: más de 5,000 vidas perdidas, más de 30,000 desaparecidos y más de 2 millones de personas afectadas. Entre tanta desgracia, los más vulnerables son centenares de niños que lo perdieron absolutamente todo y hoy han quedado huérfanos. <a class="read-more-link" href="venezuela.html" target="_blank" rel="noopener">Leer más →</a></p>
       <p><strong>Como en Carabobo, hoy nos toca luchar por la vida.</strong> Mi primo-hermano Alfredo Millán y yo hemos decidido llevar esa fuerza de nuestra historia y el repique de nuestros tambores en el pecho para enfrentar uno de los retos físicos más exigentes de Norteamérica. Caminaremos por ellos.</p>
       <a class="story-cta" href="#donate">Ayúdanos a hacerlo posible — Donar ahora →</a>
     </div>
@@ -665,22 +692,18 @@
       </div>
     </div>
 
-    <!-- Route map: a stylized (not GPS-accurate) trail line — original
-         artwork, so no copyright concerns. The gold marker position
-         updates automatically from CAMPAIGN_DATA.milesWalked below —
-         no manual dragging needed, just keep that number current.
-         Note: the JMT backcountry has little to no cell signal, so
-         this reflects your last update, not a live location. -->
+    <!-- Route map: real trail map image, uploaded to /photos as
+         JohnMuirTrail.jpg. Falls back to a simple text note if it's
+         missing (e.g. before it's been uploaded yet). The checkpoint
+         legend below is separate and still updates itself from
+         CAMPAIGN_DATA.milesWalked. -->
     <div class="map-card">
-      <svg class="map-svg" id="trailMap" viewBox="0 0 900 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        <path id="trailPath" d="M 30,150 C 110,90 150,190 220,140 C 300,80 330,170 410,120 C 490,65 520,150 600,110 C 670,75 700,145 770,90 C 810,65 830,80 860,45"
-          fill="none" stroke="var(--pine)" stroke-width="2.5" stroke-dasharray="1 9" stroke-linecap="round"/>
-        <g id="mapWaypoints"></g>
-        <circle id="mapMarkerRing" class="map-marker-ring" r="11" cx="30" cy="150"></circle>
-        <circle id="mapMarker" class="map-marker" r="6" cx="30" cy="150"></circle>
-      </svg>
-      <div data-lang="en"><div class="map-legend" id="mapLegendEn"></div></div>
-      <div data-lang="es"><div class="map-legend" id="mapLegendEs"></div></div>
+      <img class="map-img" src="photos/JohnMuirTrail.jpg" alt="Map of the John Muir Trail"
+           onerror="this.style.display='none'; document.getElementById('mapImgFallback').style.display='flex';">
+      <div id="mapImgFallback" class="map-img-fallback" style="display:none;">
+        <span data-lang="en">Trail map coming soon</span>
+        <span data-lang="es">Mapa del sendero pr&oacute;ximamente</span>
+      </div>
     </div>
   </div>
 </section>
@@ -716,13 +739,11 @@
       <p class="eyebrow">How to help</p>
       <h2>$1+ for every mile we walk</h2>
       <p style="color:var(--charcoal-soft);">100% of what's raised goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, providing food, shelter, and psychological support to children orphaned by the earthquakes.</p>
-      <p class="amounts-line"><b>$1</b> = 1 mile &nbsp;·&nbsp; <b>$5</b> = 5 miles &nbsp;·&nbsp; <b>$10+</b> = direct support for rebuilding</p>
     </div>
     <div data-lang="es">
       <p class="eyebrow">Cómo puedes ayudar</p>
       <h2>$1+ por cada milla que caminemos</h2>
       <p style="color:var(--charcoal-soft);">El 100% de lo recaudado se dona directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, para garantizar alimentación, refugio y apoyo psicológico a los niños huérfanos por esta tragedia.</p>
-      <p class="amounts-line"><b>$1</b> = 1 milla &nbsp;·&nbsp; <b>$5</b> = 5 millas &nbsp;·&nbsp; <b>$10+</b> = aporte directo a la reconstrucción</p>
     </div>
 
     <p class="ways-heading" data-lang="en">Ways to donate</p>
@@ -768,8 +789,8 @@
 <footer>
   <div class="wrap">
     <div class="flag-line"></div>
-    <p data-lang="en">211 MILES OF HOPE · YOSEMITE → MT. WHITNEY · 2026</p>
-    <p data-lang="es">211 MILLAS DE ESPERANZA · YOSEMITE → MT. WHITNEY · 2026</p>
+    <p data-lang="en">JMT FOR VENEZUELA - 211 MILES OF HOPE · YOSEMITE → MT. WHITNEY · 2026</p>
+    <p data-lang="es">JMT POR VENEZUELA - 211 MILLAS DE ESPERANZA · YOSEMITE → MT. WHITNEY · 2026</p>
   </div>
 </footer>
 
@@ -790,15 +811,6 @@
 
   // Trail checkpoints used for the route map + legend below.
   // "mile" should roughly match real JMT mile markers if you swap them.
-  const WAYPOINTS = [
-    { mile: 0,   en: "Yosemite Valley",  es: "Valle de Yosemite" },
-    { mile: 23,  en: "Tuolumne Meadows", es: "Tuolumne Meadows" },
-    { mile: 60,  en: "Red's Meadow",     es: "Red's Meadow" },
-    { mile: 108, en: "Muir Trail Ranch", es: "Muir Trail Ranch" },
-    { mile: 179, en: "Kearsarge Pass",   es: "Paso Kearsarge" },
-    { mile: 211, en: "Mt. Whitney",      es: "Monte Whitney" }
-  ];
-
   // Photos load from photos/manifest.json in this same repo — no GitHub
   // account, API, or rate limits involved. Add a line to that file for
   // each photo you upload to /photos. See manifest.json for the format.
@@ -826,41 +838,6 @@
     } else {
       el.textContent = (currentLang === 'es' ? 'Día ' : 'Day ') + info.day;
     }
-  }
-
-  function renderMap() {
-    const path = document.getElementById('trailPath');
-    const totalLen = path.getTotalLength();
-    const svgNS = 'http://www.w3.org/2000/svg';
-    const group = document.getElementById('mapWaypoints');
-    group.innerHTML = '';
-
-    WAYPOINTS.forEach(function(wp){
-      const pt = path.getPointAtLength((wp.mile / CAMPAIGN_DATA.totalMiles) * totalLen);
-      const dot = document.createElementNS(svgNS, 'circle');
-      dot.setAttribute('cx', pt.x);
-      dot.setAttribute('cy', pt.y);
-      dot.setAttribute('r', 4);
-      dot.setAttribute('class', 'waypoint-dot');
-      group.appendChild(dot);
-    });
-
-    const pct = Math.min(1, CAMPAIGN_DATA.milesWalked / CAMPAIGN_DATA.totalMiles);
-    const cur = path.getPointAtLength(pct * totalLen);
-    ['mapMarker','mapMarkerRing'].forEach(function(id){
-      const el = document.getElementById(id);
-      el.setAttribute('cx', cur.x);
-      el.setAttribute('cy', cur.y);
-    });
-
-    ['mapLegendEn','mapLegendEs'].forEach(function(id){
-      const lang = id === 'mapLegendEn' ? 'en' : 'es';
-      const wrap = document.getElementById(id);
-      wrap.innerHTML = WAYPOINTS.map(function(wp){
-        const passed = CAMPAIGN_DATA.milesWalked >= wp.mile ? ' passed' : '';
-        return '<span class="stop' + passed + '"><span class="mi">MI ' + wp.mile + '</span> ' + wp[lang] + '</span>';
-      }).join('');
-    });
   }
 
   function loadPhotos() {
@@ -892,7 +869,6 @@
     document.getElementById('dateEs').textContent = d.toLocaleDateString('es-ES', {month:'long', day:'numeric', year:'numeric'});
 
     renderDayText();
-    renderMap();
   }
 
   function setLang(lang) {

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Happened in Venezuela / Qué pasó en Venezuela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,opt@0,9..40;1,9..40&family=Source+Serif+4:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --stone:        #F3EFE7;
+    --stone-dim:     #EAE3D6;
+    --charcoal:      #24211B;
+    --charcoal-soft: #4A453B;
+    --alpenglow:     #C1552A;
+    --alpenglow-dim: #E9C9B4;
+    --pine:          #3E5943;
+    --pine-dim:      #A9BEAC;
+    --gold:          #D9A02E;
+    --line:          #D8CFBC;
+    --white:         #FFFDF8;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--stone);
+    color:var(--charcoal);
+    font-family:'Source Serif 4', Georgia, serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    padding-top:42px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  h1,h2,h3, .eyebrow, .stat-num, .btn, .nav-tab{
+    font-family:'Oswald', 'Arial Narrow', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+  :focus-visible{outline:3px solid var(--alpenglow); outline-offset:3px;}
+
+  /* language toggle (same pattern as main site) */
+  .langbar{position:fixed; top:0; left:0; right:0; z-index:50; background:var(--charcoal); color:var(--stone);}
+  .langbar-inner{max-width:920px; margin:0 auto; padding:10px 24px; display:flex; justify-content:space-between; align-items:center; gap:12px;}
+  .site-nav{display:flex; gap:4px;}
+  .nav-tab{
+    display:inline-block;
+    padding:6px 11px;
+    font-family:'Oswald', sans-serif;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--stone-dim);
+    text-decoration:none;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .nav-tab:hover{color:var(--stone);}
+  .nav-tab.active{background:rgba(217,160,46,0.18); color:var(--gold); font-weight:600;}
+  @media (max-width:640px){ .nav-tab{font-size:10.5px; padding:6px 8px;} }
+  .lang-buttons{display:flex; gap:2px;}
+  .lang-btn{background:none; border:1px solid rgba(243,239,231,0.35); font-size:17px; line-height:1; padding:6px 10px; cursor:pointer; opacity:0.55;}
+  .lang-btn:first-child{border-radius:3px 0 0 3px; border-right:none;}
+  .lang-btn:last-child{border-radius:0 3px 3px 0;}
+  .lang-btn.active{background:rgba(217,160,46,0.18); border-color:var(--gold); opacity:1;}
+  .lang-btn svg{display:block; width:26px; height:18px; border-radius:2px;}
+
+  [data-lang]{display:none;}
+  html[data-active-lang="en"] [data-lang="en"]{display:block;}
+  html[data-active-lang="es"] [data-lang="es"]{display:block;}
+  html[data-active-lang="en"] span[data-lang="en"],
+  html[data-active-lang="es"] span[data-lang="es"]{display:inline;}
+
+  /* hero */
+  .hero{background:var(--charcoal); color:var(--stone); padding:48px 0 40px;}
+  .hero-eyebrow{text-align:center; font-size:12px; color:var(--gold); letter-spacing:0.18em; margin-bottom:10px;}
+  .hero h1{text-align:center; font-size:clamp(28px,5.5vw,44px); line-height:1.1; font-weight:700; color:var(--white);}
+  .hero-sub{max-width:620px; margin:14px auto 0; text-align:center; font-size:16px; color:var(--stone-dim); font-family:'Source Serif 4',serif; text-transform:none; letter-spacing:0;}
+
+  section{padding:46px 0;}
+  .eyebrow{font-size:12px; color:var(--alpenglow); letter-spacing:0.16em; margin-bottom:10px;}
+  h2{font-size:clamp(22px,4vw,28px); font-weight:600; margin-bottom:18px;}
+
+  .article p:not(.eyebrow){margin-bottom:16px; font-size:17px; color:var(--charcoal-soft); text-align:justify; text-justify:inter-word;}
+  .divider{height:1px; background:var(--line); margin:0;}
+
+  /* stats grid */
+  .stats-note{font-size:13px; color:var(--charcoal-soft); margin-bottom:22px; font-family:'IBM Plex Mono',monospace;}
+  .missing-note{font-size:14.5px; color:var(--charcoal-soft); margin-top:20px;}
+  .sources-note{font-size:11.5px; color:var(--charcoal-soft); margin-top:10px; font-family:'IBM Plex Mono',monospace;}
+  .stat-list{display:grid; grid-template-columns:repeat(2,1fr); gap:0 32px; background:var(--white); border:1px solid var(--line); border-radius:4px; padding:4px 20px;}
+  .stat-row{display:flex; justify-content:space-between; align-items:baseline; gap:10px; padding:9px 0; border-bottom:1px solid var(--line); font-size:13.5px;}
+  .stat-row .label{color:var(--charcoal-soft);}
+  .stat-row .num{font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--alpenglow); white-space:nowrap;}
+  .stat-list > div:nth-child(n+15) .stat-row{border-bottom:none;}
+  @media (max-width:600px){ .stat-list{grid-template-columns:1fr; padding:4px 18px;} .stat-list > div:nth-child(n+15) .stat-row{border-bottom:1px solid var(--line);} .stat-list > div:last-child .stat-row{border-bottom:none;} }
+
+  /* foundation block */
+  .found-block{background:var(--white); border:1px solid var(--line); border-radius:4px; padding:24px;}
+  .found-block p{color:var(--charcoal-soft); font-size:16px; margin-bottom:14px;}
+  .org-link{color:var(--alpenglow); text-decoration:underline; text-decoration-color:var(--alpenglow-dim); text-underline-offset:2px;}
+  .org-link:hover{text-decoration-color:var(--alpenglow);}
+  .btn{display:inline-block; background:var(--alpenglow); color:var(--white); padding:12px 26px; border-radius:3px; font-size:13.5px; font-weight:600; text-decoration:none; margin-top:6px;}
+  .btn:hover{background:#A6431E;}
+
+  /* photos */
+  .photo-credit{font-size:12.5px; color:var(--charcoal-soft); font-family:'IBM Plex Mono',monospace; margin-bottom:20px;}
+  .photo-grid-real{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
+  .photo-slot{aspect-ratio:3/2; background:var(--stone-dim); border:1px dashed var(--charcoal-soft); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--charcoal-soft); font-family:'IBM Plex Mono',monospace; font-size:11px; padding:10px; border-radius:2px;}
+  .photo-slot.has-img{position:relative; border:none; padding:0; overflow:hidden; display:block;}
+  .photo-slot.has-img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .photo-caption{position:absolute; left:0; right:0; bottom:0; padding:6px 10px; font-size:10.5px; color:var(--white); background:linear-gradient(transparent, rgba(0,0,0,0.6));}
+  .photo-slot.tall{aspect-ratio:2/3;}
+  .photo-slot.wide{grid-column:span 2; aspect-ratio:16/7;}
+  @media (max-width:640px){
+    body{padding-top:76px;}
+  }
+  @media (max-width:700px){
+    .photo-grid-real{grid-template-columns:repeat(2,1fr);}
+    .photo-slot.wide{grid-column:span 2;}
+  }
+
+  footer{padding:38px 0 60px; text-align:center;}
+  footer .flag-line{width:48px; height:4px; background:linear-gradient(90deg, var(--gold), var(--pine), var(--alpenglow)); margin:0 auto 16px; border-radius:2px;}
+  footer p{font-size:13px; color:var(--charcoal-soft); font-family:'IBM Plex Mono',monospace;}
+  footer .back-link2{display:inline-block; margin-top:14px; font-size:13px; color:var(--pine); text-decoration:underline; text-decoration-color:var(--pine-dim);}
+
+</style>
+</head>
+<body>
+
+<div class="langbar">
+  <div class="langbar-inner">
+    <nav class="site-nav">
+      <div data-lang="en"><a class="nav-tab" href="index.html">Home</a></div>
+      <div data-lang="es"><a class="nav-tab" href="index.html">Inicio</a></div>
+      <div data-lang="en"><a class="nav-tab active" href="venezuela.html">Earthquake in Venezuela</a></div>
+      <div data-lang="es"><a class="nav-tab active" href="venezuela.html">Terremoto en Venezuela</a></div>
+    </nav>
+    <div class="lang-buttons">
+      <button class="lang-btn" id="btn-es" onclick="setLang('es')" aria-label="Español">
+        <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="3" height="2" fill="#AA151B"/><rect width="3" height="0.666" y="0.667" fill="#F1BF00"/>
+        </svg>
+      </button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-label="English">
+        <svg viewBox="0 0 19 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="19" height="10" fill="#B22234"/>
+          <g fill="#FFF"><rect width="19" height="0.77" y="0.77"/><rect width="19" height="0.77" y="2.31"/><rect width="19" height="0.77" y="3.85"/><rect width="19" height="0.77" y="5.39"/><rect width="19" height="0.77" y="6.93"/><rect width="19" height="0.77" y="8.47"/></g>
+          <rect width="7.6" height="5.39" fill="#3C3B6E"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow" data-lang="en">JUNE 24, 2026 &middot; VENEZUELA</p>
+    <p class="hero-eyebrow" data-lang="es">24 DE JUNIO, 2026 &middot; VENEZUELA</p>
+    <h1 data-lang="en">What Happened in Venezuela</h1>
+    <h1 data-lang="es">Qu&eacute; pas&oacute; en Venezuela</h1>
+    <p class="hero-sub" data-lang="en">The earthquakes behind Mauricio and Alfredo's challenge &mdash; what struck, what it left behind, and where things stand one month later.</p>
+    <p class="hero-sub" data-lang="es">Los terremotos detr&aacute;s del reto de Mauricio y Alfredo &mdash; qu&eacute; ocurri&oacute;, qu&eacute; dej&oacute;, y c&oacute;mo est&aacute; la situaci&oacute;n un mes despu&eacute;s.</p>
+  </div>
+</section>
+
+<section class="article">
+  <div class="wrap">
+    <div data-lang="en">
+      <p class="eyebrow">The disaster</p>
+      <h2>A double earthquake, thirty seconds apart</h2>
+      <p class="lead">On the afternoon of June 24, 2026, two earthquakes struck Venezuela's northern coast within thirty seconds of each other &mdash; a magnitude 7.2 foreshock near San Felipe, followed by a magnitude 7.5 mainshock off the coast near La Guaira, the strongest quakes to hit the country in over a century. Nowhere was hit harder than La Guaira itself: an estimated 80% of its buildings were damaged or destroyed, and satellite radar data later showed the ground had shifted by as much as 60 centimeters in some areas.</p>
+      <p>Rescue teams from dozens of countries worked alongside Venezuelan crews to pull survivors from the rubble, including several children found alive days after the quakes. As search-and-rescue wound down, a slower, harder phase began: tens of thousands of families displaced, basic services disrupted, and a health system already stretched thin pushed further past its limits.</p>
+      <p>A month later, international attention has largely moved on even as needs keep growing &mdash; and few places carry that weight more than La Guaira, where thousands of children lost parents, homes, or both. It's that same population Fundaci&oacute;n Proyecto de la Mano, and this walk, are working to support.</p>
+    </div>
+    <div data-lang="es">
+      <p class="eyebrow">La tragedia</p>
+      <h2>Un doble terremoto, con treinta segundos de diferencia</h2>
+      <p class="lead">La tarde del 24 de junio de 2026, dos terremotos sacudieron la costa norte de Venezuela con treinta segundos de diferencia: un sismo  de magnitud 7.2 cerca de San Felipe, seguido de un sismo principal de magnitud 7.5 frente a las costas de La Guaira, los m&aacute;s fuertes en golpear al pa&iacute;s en m&aacute;s de un siglo. Ning&uacute;n lugar fue golpeado con m&aacute;s fuerza que la propia La Guaira: se estima que el 80% de sus edificaciones resultaron da&ntilde;adas o destruido, y datos de radar satelital mostraron despu&eacute;s que el terreno se desplaz&oacute; hasta 60 cent&iacute;metros en algunas zonas.</p>
+      <p>Equipos de rescate de decenas de pa&iacute;ses han trabajado junto a personal venezolano para sacar sobrevivientes de los escombros, incluyendo varios ni&ntilde;os encontrados con vida d&iacute;as despu&eacute;s. A medida que las operaciones de b&uacute;squeda y rescate fueron cerrando, comenz&oacute; una fase m&aacute;s lenta y dif&iacute;cil: decenas de miles de familias desplazadas, servicios b&aacute;sicos interrumpidos, y un sistema de salud ya al l&iacute;mite, ahora a&uacute;n m&aacute;s sobrepasado.</p>
+      <p>Un mes despu&eacute;s, la atenci&oacute;n internacional se ha ido diluyendo, incluso mientras las necesidades siguen creciendo &mdash; y ning&uacute;n lugar carga ese peso m&aacute;s que La Guaira, donde miles de ni&ntilde;os perdieron a sus padres, su hogar, o ambos. Es esa misma poblaci&oacute;n la que la Fundaci&oacute;n Proyecto de la Mano, y esta caminata, buscan apoyar.</p>
+    </div>
+
+    <div class="divider" style="margin:8px 0 28px;"></div>
+
+    <div data-lang="en">
+      <p class="eyebrow">One month later</p>
+      <h2>The numbers</h2>
+      <p class="sources-note" data-lang="en">Source: <a class="org-link" href="https://www.asambleanacional.gob.ve/noticias/asciende-a-5546-numero-de-fallecidos-por-doble-terremoto" target="_blank" rel="noopener">Official report, Government of the Bolivarian Republic of Venezuela &middot; July 24, 2026</a></p>
+    </div>
+    <div data-lang="es">
+      <p class="eyebrow">Un mes despu&eacute;s</p>
+      <h2>Las cifras</h2>
+      <p class="sources-note" data-lang="es">Fuente: <a class="org-link" href="https://www.asambleanacional.gob.ve/noticias/asciende-a-5546-numero-de-fallecidos-por-doble-terremoto" target="_blank" rel="noopener">Comunicado oficial, Gobierno de la República Bolivariana de Venezuela  &middot; 24 de Julio, 2026</a></p>
+    </div>
+
+    <div class="stat-list">
+      <div class="stat-row"><span class="label"><span data-lang="en">Deaths</span><span data-lang="es">Fallecidos</span></span><span class="num">5,546</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Injured</span><span data-lang="es">Heridos</span></span><span class="num">16,740</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Rescued</span><span data-lang="es">Rescatados</span></span><span class="num">6,462</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Families assisted</span><span data-lang="es">Familias atendidas</span></span><span class="num">128,324</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Temporary camps</span><span data-lang="es">Campamentos transitorios</span></span><span class="num">107</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">People in camps</span><span data-lang="es">Personas en campamentos</span></span><span class="num">23,811</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">People affected</span><span data-lang="es">Damnificados</span></span><span class="num">17,907</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Buildings affected</span><span data-lang="es">Edificios afectados</span></span><span class="num">856</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Buildings collapsed</span><span data-lang="es">Edificios colapsados</span></span><span class="num">190</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Food distributed</span><span data-lang="es">Alimentos distribuidos</span></span><span class="num">10,977,336 T</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Patients treated</span><span data-lang="es">Pacientes atendidos</span></span><span class="num">47,942</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">International rescuers</span><span data-lang="es">Rescatistas internacionales</span></span><span class="num">2,278</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Personnel deployed</span><span data-lang="es">Efectivos desplegados</span></span><span class="num">30,989</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Volunteers</span><span data-lang="es">Voluntarios</span></span><span class="num">31,745</span></div>
+      <div class="stat-row"><span class="label"><span data-lang="en">Water distributed</span><span data-lang="es">Agua distribuida</span></span><span class="num">51,215,582 L</span></div>
+      <div class="stat-row" style="border-bottom:none;"><span class="label"><span data-lang="en">Aftershocks</span><span data-lang="es">R&eacute;plicas</span></span><span class="num">1,500</span></div>
+    </div>
+
+    <p class="missing-note" data-lang="en">The government's official death toll stands at 5,546, but there's no official count of the missing. Humanitarian organizations estimate at least 40,000 people may still be unaccounted for.</p>
+    <p class="missing-note" data-lang="es">La cifra oficial de fallecidos es de 5,546, pero no existe un conteo oficial de personas desaparecidas. Organizaciones humanitarias estiman que al menos 40,000 personas podr&iacute;an seguir sin ser localizadas.</p>
+
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section>
+  <div class="wrap">
+    <div data-lang="en">
+      <p class="eyebrow">Who receives your donation</p>
+      <h2>Fundaci&oacute;n Proyecto de la Mano</h2>
+    </div>
+    <div data-lang="es">
+      <p class="eyebrow">Qui&eacute;n recibe tu donaci&oacute;n</p>
+      <h2>Fundaci&oacute;n Proyecto de la Mano</h2>
+    </div>
+
+    <div class="found-block">
+      <p data-lang="en">Fundaci&oacute;n Proyecto de la Mano is a nonprofit providing healthcare, education, and community support to underserved communities in Venezuela and among the Venezuelan community in Miami. In the wake of the earthquakes, their work has extended to direct relief for families affected in La Guaira &mdash; the same organization Mauricio and Alfredo's walk supports.</p>
+      <p data-lang="es">La Fundaci&oacute;n Proyecto de la Mano es una organizaci&oacute;n sin fines de lucro que brinda atenci&oacute;n m&eacute;dica, educaci&oacute;n y apoyo comunitario a comunidades vulnerables en Venezuela y a la comunidad venezolana en Miami. Tras los terremotos, su labor se ha extendido a ayuda directa para las familias afectadas en La Guaira &mdash; la misma organizaci&oacute;n que apoya la caminata de Mauricio y Alfredo.</p>
+      <p data-lang="en">Learn more at <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">fundacionproyectodelamano.org</a></p>
+      <p data-lang="es">Conoce m&aacute;s en <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">fundacionproyectodelamano.org</a></p>
+      <div data-lang="en"><a class="btn" href="index.html#donate">See how to donate &rarr;</a></div>
+      <div data-lang="es"><a class="btn" href="index.html#donate">Ver c&oacute;mo donar &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section>
+  <div class="wrap">
+    <div data-lang="en">
+      <p class="eyebrow">On the ground</p>
+      <h2>La Guaira, one month later</h2>
+    </div>
+    <div data-lang="es">
+      <p class="eyebrow">En el terreno</p>
+      <h2>La Guaira, un mes despu&eacute;s</h2>
+    </div>
+    <p class="photo-credit" data-lang="en">Photos: Andrea Rodr&iacute;guez</p>
+    <p class="photo-credit" data-lang="es">Fotos: Andrea Rodr&iacute;guez</p>
+
+    <div class="photo-grid-real" id="photoGridReal">
+      <div class="photo-slot wide" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot wide" data-lang="es">Foto pr&oacute;ximamente</div>
+      <div class="photo-slot" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot" data-lang="es">Foto pr&oacute;ximamente</div>
+      <div class="photo-slot" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot" data-lang="es">Foto pr&oacute;ximamente</div>
+      <div class="photo-slot" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot" data-lang="es">Foto pr&oacute;ximamente</div>
+      <div class="photo-slot wide" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot wide" data-lang="es">Foto pr&oacute;ximamente</div>
+      <div class="photo-slot" data-lang="en">Photo coming soon</div>
+      <div class="photo-slot" data-lang="es">Foto pr&oacute;ximamente</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="flag-line"></div>
+    <p data-lang="en">JMT FOR VENEZUELA - 211 MILES OF HOPE · YOSEMITE → MT. WHITNEY · 2026</p>
+    <p data-lang="es">JMT POR VENEZUELA - 211 MILLAS DE ESPERANZA · YOSEMITE → MT. WHITNEY · 2026</p>
+    <a class="back-link2" data-lang="en" href="index.html">&larr; Back to home page</a>
+    <a class="back-link2" data-lang="es" href="index.html">&larr; Volver a p&aacute;gina inicial</a>
+  </div>
+</footer>
+
+<script>
+  const PHOTOS_MANIFEST_URL = 'photos/venezuela/manifest.json';
+  let currentLang = 'en';
+
+  function loadPhotos(){
+    fetch(PHOTOS_MANIFEST_URL, { cache: 'no-store' })
+      .then(function(res){ if (!res.ok) throw new Error('no manifest yet'); return res.json(); })
+      .then(function(data){
+        const photos = (data && data.photos) || [];
+        if (photos.length === 0) return; // keep placeholders
+
+        const grid = document.getElementById('photoGridReal');
+        grid.innerHTML = photos.map(function(p){
+          const cap = p['caption' + (currentLang === 'es' ? 'Es' : 'En')] || '';
+          const capHtml = cap ? '<div class="photo-caption mono">' + cap + '</div>' : '';
+          const wideClass = p.wide ? ' wide' : '';
+          return '<div class="photo-slot' + wideClass + ' has-img"><img src="photos/venezuela/' + p.file + '" alt="La Guaira, Venezuela — Andrea Rodr\u00edguez" loading="lazy">' + capHtml + '</div>';
+        }).join('');
+      })
+      .catch(function(){ /* stay on placeholders — no manifest yet, or offline */ });
+  }
+
+  function setLang(lang){
+    currentLang = lang;
+    document.documentElement.setAttribute('data-active-lang', lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    loadPhotos();
+  }
+  setLang('en');
+</script>
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 
 An independent tracking page for Mauricio Fuentes and Alfredo Millán's John Muir Trail walk — Yosemite to Mt. Whitney — raising funds for children affected by the June 2026 earthquakes in Venezuela.
 
-🔗 **Live site:** [https://211millasdeesperanza.netlify.app](https://211millasdeesperanza.netlify.app/)
+🔗 **Live site:** [https://johnmuirtrailforvenezuela.netlify.app](https://johnmuirtrailforvenezuela.netlify.app/)
 
 ## About this page
 
@@ -14,11 +14,15 @@ Bilingual (Spanish / English), single self-contained HTML file — no build step
 
 ```
 211-millas-de-esperanza/
-├── index.html          ← the whole site (HTML, CSS, JS in one file)
+├── index.html          ← main site (HTML, CSS, JS in one file)
+├── venezuela.html      ← "What Happened in Venezuela" details page
 ├── README.md
 └── photos/
-    ├── manifest.json    ← list of photos to display (see below)
-    └── (image files)
+    ├── manifest.json           ← trail photos (see "Adding photos")
+    ├── (trail image files)
+    └── venezuela/
+        ├── manifest.json       ← La Guaira photos (see below)
+        └── (La Guaira image files)
 ```
 
 ## Updating progress
@@ -51,6 +55,35 @@ Photos are listed in `photos/manifest.json` and the page loads them from there �
 3. Commit both changes together. The order of entries in the file is the order photos appear on the page.
 
 Until `manifest.json` has entries, the page shows "coming soon" placeholders instead.
+
+## Adding La Guaira photos (venezuela.html)
+
+Same system, separate folder: `photos/venezuela/manifest.json`, loaded by `venezuela.html` only — trail photos and La Guaira photos never mix.
+
+1. Upload the image file to `/photos/venezuela`.
+2. Add a line for it in `photos/venezuela/manifest.json`, e.g.:
+   ```json
+   {
+     "file": "caraballeda-01.jpg",
+     "wide": true,
+     "captionEn": "",
+     "captionEs": ""
+   }
+   ```
+   `file` is required. `wide: true` makes the photo span two columns (use it for horizontal/landscape photos — most of these should be). Omit `wide` or set it to `false` for a regular-width photo. Captions are optional.
+3. Commit both changes together.
+
+Photo credit ("Andrea Rodríguez") is already set in the page itself — no need to add it per photo.
+
+## About the trail map
+
+The route section shows a real map image, uploaded directly to `/photos/JohnMuirTrail.jpg` (fixed filename, not part of the photo manifest system). If that file is missing, the page shows a simple "coming soon" placeholder instead of breaking.
+
+If you ever need to replace the map, be careful: most JMT map sites (Tom Harrison Maps, National Geographic Trails Illustrated, personal trip-report blogs, jmtwilderness.org) are copyrighted and shouldn't be reposted here.
+
+## Site navigation
+
+Both pages share a top bar with two tabs — Home/Inicio and Earthquake in Venezuela/Terremoto en Venezuela — so visitors can jump between them at any time, plus the language toggle. The active tab highlights itself based on which page you're on; that's hardcoded per file, so it doesn't need any JS configuration.
 
 ## Possible next step: Instagram integration
 
