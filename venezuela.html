@@ -114,19 +114,34 @@
 
   /* photos */
   .photo-credit{font-size:12.5px; color:var(--charcoal-soft); font-family:'IBM Plex Mono',monospace; margin-bottom:20px;}
-  .photo-grid-real{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
+  .photo-grid-real{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
   .photo-slot{aspect-ratio:3/2; background:var(--stone-dim); border:1px dashed var(--charcoal-soft); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--charcoal-soft); font-family:'IBM Plex Mono',monospace; font-size:11px; padding:10px; border-radius:2px;}
   .photo-slot.has-img{position:relative; border:none; padding:0; overflow:hidden; display:block;}
-  .photo-slot.has-img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .photo-slot.has-img img{width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in;}
   .photo-caption{position:absolute; left:0; right:0; bottom:0; padding:6px 10px; font-size:10.5px; color:var(--white); background:linear-gradient(transparent, rgba(0,0,0,0.6));}
+  .lightbox{
+    display:none;
+    position:fixed; inset:0; z-index:200;
+    background:rgba(20,18,14,0.92);
+    align-items:center; justify-content:center;
+    padding:32px;
+    cursor:zoom-out;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:100%; max-height:100%; border-radius:2px; box-shadow:0 10px 40px rgba(0,0,0,0.5); cursor:default;}
+  .lightbox-close{
+    position:absolute; top:16px; right:20px;
+    background:none; border:none; color:var(--white);
+    font-size:32px; line-height:1; cursor:pointer; padding:6px 10px;
+  }
   .photo-slot.tall{aspect-ratio:2/3;}
   .photo-slot.wide{grid-column:span 2; aspect-ratio:16/7;}
   @media (max-width:640px){
     body{padding-top:76px;}
   }
   @media (max-width:700px){
-    .photo-grid-real{grid-template-columns:repeat(2,1fr);}
-    .photo-slot.wide{grid-column:span 2;}
+    .photo-grid-real{grid-template-columns:1fr;}
+    .photo-slot.wide{grid-column:span 1;}
   }
 
   footer{padding:38px 0 60px; text-align:center;}
@@ -311,7 +326,7 @@
           const cap = p['caption' + (currentLang === 'es' ? 'Es' : 'En')] || '';
           const capHtml = cap ? '<div class="photo-caption mono">' + cap + '</div>' : '';
           const wideClass = p.wide ? ' wide' : '';
-          return '<div class="photo-slot' + wideClass + ' has-img"><img src="photos/venezuela/' + p.file + '" alt="La Guaira, Venezuela — Andrea Rodr\u00edguez" loading="lazy">' + capHtml + '</div>';
+          return '<div class="photo-slot' + wideClass + ' has-img"><img src="photos/venezuela/' + p.file + '" alt="La Guaira, Venezuela — Andrea Rodr\u00edguez" loading="lazy" onclick="openLightbox(this)">' + capHtml + '</div>';
         }).join('');
       })
       .catch(function(){ /* stay on placeholders — no manifest yet, or offline */ });
@@ -325,7 +340,24 @@
     loadPhotos();
   }
   setLang('en');
+
+  function openLightbox(imgEl){
+    document.getElementById('lightboxImg').src = imgEl.src;
+    document.getElementById('lightboxImg').alt = imgEl.alt;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeLightbox();
+  });
 </script>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+</div>
 
 </body>
 </html>
