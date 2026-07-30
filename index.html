@@ -497,7 +497,7 @@
     padding:20px 20px 8px;
     margin-top:24px;
   }
-  .map-img{width:100%; height:auto; display:block; border-radius:2px;}
+  .map-img{width:100%; height:auto; display:block; border-radius:2px; cursor:zoom-in;}
   .map-img-fallback{
     width:100%;
     aspect-ratio:16/9;
@@ -714,6 +714,7 @@
          CAMPAIGN_DATA.milesWalked. -->
     <div class="map-card">
       <img class="map-img" src="photos/JohnMuirTrail.jpg" alt="Map of the John Muir Trail"
+           onclick="openLightbox(this)"
            onerror="this.style.display='none'; document.getElementById('mapImgFallback').style.display='flex';">
       <div id="mapImgFallback" class="map-img-fallback" style="display:none;">
         <span data-lang="en">Trail map coming soon</span>
@@ -893,11 +894,19 @@
     document.getElementById('btn-es').classList.toggle('active', lang === 'es');
     renderDayText();
     loadPhotos();
+    syncHeaderHeight();
   }
+
+  function syncHeaderHeight(){
+    const bar = document.querySelector('.langbar');
+    if (bar) document.body.style.paddingTop = bar.offsetHeight + 'px';
+  }
+  window.addEventListener('resize', syncHeaderHeight);
 
   render();
   setLang('en'); // defaults to English on every visit, per request
   loadPhotos();
+  syncHeaderHeight();
 
   function openLightbox(imgEl){
     document.getElementById('lightboxImg').src = imgEl.src;
