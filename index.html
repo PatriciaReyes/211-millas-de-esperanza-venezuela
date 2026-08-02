@@ -296,6 +296,31 @@
     color:var(--charcoal-soft);
   }
 
+  .live-tracker{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:20px;
+    margin:20px 0;
+  }
+  .live-note{
+    color:var(--charcoal-soft);
+    font-size:14px;
+    margin:2px 0 16px;
+    max-width:70ch;
+  }
+  .live-tracker-frame{
+    width:100%;
+    aspect-ratio:16/11;
+    border:1px solid var(--line);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .live-tracker-frame iframe{width:100%; height:100%; border:0;}
+  @media (max-width:600px){
+    .live-tracker-frame{aspect-ratio:4/5;}
+  }
+
   /* ---------- sections ---------- */
 
   section{padding:46px 0;}
@@ -497,19 +522,15 @@
     padding:20px 20px 8px;
     margin-top:24px;
   }
-  .map-img{width:100%; height:auto; display:block; border-radius:2px; cursor:zoom-in;}
-  .map-img-fallback{
+  .map-live-note{font-size:12px; color:var(--charcoal-soft); font-family:'IBM Plex Mono',monospace; margin-bottom:10px;}
+  .map-embed-wrap{
     width:100%;
-    aspect-ratio:16/9;
-    background:var(--stone-dim);
-    border:1px dashed var(--charcoal-soft);
+    aspect-ratio:4/3;
     border-radius:2px;
-    align-items:center;
-    justify-content:center;
-    color:var(--charcoal-soft);
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
+    overflow:hidden;
+    background:var(--stone-dim);
   }
+  .map-embed{width:100%; height:100%; border:0;}
 
   /* disclaimer */
   .disclaimer{
@@ -638,6 +659,23 @@
   </div>
 </div>
 
+<!-- ========== LIVE LOCATION (Garmin inReach) ========== -->
+<div class="wrap">
+  <div class="live-tracker">
+    <div data-lang="en">
+      <p class="eyebrow">Live location</p>
+      <p class="live-note">Mauricio and Alfredo are carrying a GPS satellite communicator &mdash; since most of the JMT has no cell signal, this map updates by satellite whenever they check in, not in real time.</p>
+    </div>
+    <div data-lang="es">
+      <p class="eyebrow">Ubicaci&oacute;n en vivo</p>
+      <p class="live-note">Mauricio y Alfredo llevan un GPS satelital &mdash; como la mayor parte del JMT no tiene se&ntilde;al celular, este mapa se actualiza por sat&eacute;lite cada vez que se conectan, no en tiempo real.</p>
+    </div>
+    <div class="live-tracker-frame">
+      <iframe src="https://share.garmin.com/JMTXVZLA" frameborder="0" title="Live location — Garmin inReach"></iframe>
+    </div>
+  </div>
+</div>
+
 <!-- ========== COMPACT DONATE CTA ========== -->
 <div class="cta-bar">
   <div class="cta-inner">
@@ -707,18 +745,15 @@
       </div>
     </div>
 
-    <!-- Route map: real trail map image, uploaded to /photos as
-         JohnMuirTrail.jpg. Falls back to a simple text note if it's
-         missing (e.g. before it's been uploaded yet). The checkpoint
-         legend below is separate and still updates itself from
-         CAMPAIGN_DATA.milesWalked. -->
+    <!-- Live location: Garmin inReach MapShare, embedded via Garmin's
+         own official iframe method (works over satellite, so it
+         updates even without cell signal on the trail). Won't show
+         a real track until the trek actually starts. -->
     <div class="map-card">
-      <img class="map-img" src="photos/JohnMuirTrail.jpg" alt="Map of the John Muir Trail"
-           onclick="openLightbox(this)"
-           onerror="this.style.display='none'; document.getElementById('mapImgFallback').style.display='flex';">
-      <div id="mapImgFallback" class="map-img-fallback" style="display:none;">
-        <span data-lang="en">Trail map coming soon</span>
-        <span data-lang="es">Mapa del sendero pr&oacute;ximamente</span>
+      <p class="map-live-note" data-lang="en">Live GPS tracking via Garmin inReach &mdash; updates by satellite, even without cell signal.</p>
+      <p class="map-live-note" data-lang="es">Rastreo GPS en vivo v&iacute;a Garmin inReach &mdash; se actualiza por sat&eacute;lite, incluso sin se&ntilde;al celular.</p>
+      <div class="map-embed-wrap">
+        <iframe class="map-embed" src="https://share.garmin.com/JMTVZLA" title="Live GPS tracking — Garmin inReach"></iframe>
       </div>
     </div>
   </div>
