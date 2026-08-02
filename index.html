@@ -116,6 +116,7 @@
     opacity:0.55;
   }
   .lang-btn svg{display:block; width:26px; height:18px; border-radius:2px;}
+  .flag-icon{display:inline-block; width:20px; height:14px; vertical-align:-2px; border-radius:1px; margin:0 1px;}
   .lang-btn:first-child{border-radius:3px 0 0 3px; border-right:none;}
   .lang-btn:last-child{border-radius:0 3px 3px 0;}
   .lang-btn.active{
@@ -311,14 +312,14 @@
   }
   .live-tracker-frame{
     width:100%;
-    aspect-ratio:16/11;
+    height:300px;
     border:1px solid var(--line);
     border-radius:2px;
     overflow:hidden;
   }
   .live-tracker-frame iframe{width:100%; height:100%; border:0;}
   @media (max-width:600px){
-    .live-tracker-frame{aspect-ratio:4/5;}
+    .live-tracker-frame{height:260px;}
   }
 
   /* ---------- sections ---------- */
@@ -348,7 +349,7 @@
   .story strong{color:var(--charcoal); font-weight:600;}
   .story-cta{
     display:inline-block;
-    margin-top:18px;
+    margin:6px 0 22px;
     color:var(--alpenglow);
     font-family:'Oswald', sans-serif;
     font-size:14px;
@@ -522,15 +523,19 @@
     padding:20px 20px 8px;
     margin-top:24px;
   }
-  .map-live-note{font-size:12px; color:var(--charcoal-soft); font-family:'IBM Plex Mono',monospace; margin-bottom:10px;}
-  .map-embed-wrap{
+  .map-img{width:100%; height:auto; display:block; border-radius:2px; cursor:zoom-in;}
+  .map-img-fallback{
     width:100%;
-    aspect-ratio:4/3;
-    border-radius:2px;
-    overflow:hidden;
+    aspect-ratio:16/9;
     background:var(--stone-dim);
+    border:1px dashed var(--charcoal-soft);
+    border-radius:2px;
+    align-items:center;
+    justify-content:center;
+    color:var(--charcoal-soft);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
   }
-  .map-embed{width:100%; height:100%; border:0;}
 
   /* disclaimer */
   .disclaimer{
@@ -664,11 +669,11 @@
   <div class="live-tracker">
     <div data-lang="en">
       <p class="eyebrow">Live location</p>
-      <p class="live-note">Mauricio and Alfredo are carrying a GPS satellite communicator &mdash; since most of the JMT has no cell signal, this map updates by satellite whenever they check in, not in real time.</p>
+      <p class="live-note">Mauricio and Alfredo are carrying a satellite GPS device — since most of the trail has no cell signal, this map only updates when they check in, not in real time.</p>
     </div>
     <div data-lang="es">
       <p class="eyebrow">Ubicaci&oacute;n en vivo</p>
-      <p class="live-note">Mauricio y Alfredo llevan un GPS satelital &mdash; como la mayor parte del JMT no tiene se&ntilde;al celular, este mapa se actualiza por sat&eacute;lite cada vez que se conectan, no en tiempo real.</p>
+      <p class="live-note">Mauricio y Alfredo llevan un GPS satelital — como la mayor parte del sendero no tiene se&ntilde;al celular, este mapa solo se actualiza cuando se conectan, no en tiempo real.</p>
     </div>
     <div class="live-tracker-frame">
       <iframe src="https://share.garmin.com/JMTXVZLA" frameborder="0" title="Live location — Garmin inReach"></iframe>
@@ -693,19 +698,28 @@
     <div data-lang="en">
       <p class="eyebrow">Why we're walking</p>
       <h2>A day of strength, turned into a day of loss</h2>
-      <p class="lead">Hi — I'm Mauricio Fuentes. For Venezuelans, June 24th has always meant strength and patriotic joy. It's the day Simón Bolívar sealed our freedom at the Battle of Carabobo, and the day the drums of San Juan Bautista — a UNESCO intangible cultural heritage of humanity — sound with faith and celebration.</p>
-      <p>But this past June, the earth shook. Two devastating earthquakes, magnitude 7.2 and 7.5, tore deep wounds into our country: more than 5,000 lives lost, more than 30,000 people missing, and over 2 million affected. Among all that loss, the most vulnerable are hundreds of children who lost absolutely everything and are now orphaned. <a class="read-more-link" href="venezuela.html" target="_blank" rel="noopener">Read more →</a></p>
-      <p><strong>Like at Carabobo, today it's our turn to fight for life.</strong> My cousin Alfredo Millán — who's like a brother to me — and I have decided to carry that historical strength, and the beat of those drums, into one of the toughest physical challenges in North America. We'll walk it for them.</p>
+      <p class="lead">Hi, I'm Mauricio Fuentes. Venezuela was my home until the United States welcomed me in 2016. This June, two devastating earthquakes — magnitude 7.2 and 7.5 — left deep scars across the nation: more than 5,000 lives lost, an estimated 40,000 still missing, and millions affected, including children who lost their homes, their parents, and the stability every child deserves. <a class="read-more-link" href="venezuela.html" target="_blank" rel="noopener">Read more →</a></p>
+      <p>For Venezuelans, June 24th is a day of courage and patriotic pride, much like July 4th in the U.S. — it marks the day Simón Bolívar secured our independence at the Battle of Carabobo. Now it will also be remembered for this disaster. From here in the U.S., I've decided to do my part, raising funds for the children who need food, shelter, protection, and hope.</p>
+      <p>My cousin Alfredo and I are carrying the strength of our history into one of North America's most demanding endurance challenges: the <strong>John Muir Trail</strong>. We invite you to follow our journey each day — the breathtaking views of the trail, but more importantly, the sweat, determination, and heart we're dedicating to this cause. You can pledge any amount per mile, or make a one-time gift.</p>
       <a class="story-cta" href="#donate">Help us make it happen — Donate now →</a>
+      <p>May God bless you, and &ldquo;Gloria al Bravo Pueblo&rdquo;
+        <svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="Venezuela"><rect width="3" height="0.667" fill="#FCD116"/><rect width="3" height="0.667" y="0.667" fill="#00247D"/><rect width="3" height="0.667" y="1.333" fill="#CF142B"/></svg>
+        &#9834;
+        <svg class="flag-icon" viewBox="0 0 19 10" xmlns="http://www.w3.org/2000/svg" aria-label="United States"><rect width="19" height="10" fill="#B22234"/><rect y="0.77" width="19" height="0.77" fill="#FFF"/><rect y="2.31" width="19" height="0.77" fill="#FFF"/><rect y="3.85" width="19" height="0.77" fill="#FFF"/><rect y="5.38" width="19" height="0.77" fill="#FFF"/><rect y="6.92" width="19" height="0.77" fill="#FFF"/><rect y="8.46" width="19" height="0.77" fill="#FFF"/><rect width="7.6" height="5.38" fill="#3C3B6E"/></svg>
+      </p>
     </div>
 
     <div data-lang="es">
       <p class="eyebrow">Por qué caminamos</p>
       <h2>Un día de fuerza, convertido en un día de pérdida</h2>
-      <p class="lead">¡Hola! Soy Mauricio Fuentes. Históricamente, para nosotros los venezolanos, el 24 de junio es sinónimo de fuerza y júbilo patriótico. Es el día en que Simón Bolívar selló nuestra libertad en la Batalla de Carabobo, y es el día en que los tambores de San Juan Bautista —nuestro patrimonio cultural inmaterial de la humanidad por la UNESCO— resuenan con fe y alegría.</p>
-      <p>Sin embargo, este último junio la tierra tembló. Dos terremotos devastadores de 7.2 y 7.5 de magnitud dejaron heridas profundas en nuestro país: más de 5,000 vidas perdidas, más de 30,000 desaparecidos y más de 2 millones de personas afectadas. Entre tanta desgracia, los más vulnerables son centenares de niños que lo perdieron absolutamente todo y hoy han quedado huérfanos. <a class="read-more-link" href="venezuela.html" target="_blank" rel="noopener">Leer más →</a></p>
-      <p><strong>Como en Carabobo, hoy nos toca luchar por la vida.</strong> Mi primo-hermano Alfredo Millán y yo hemos decidido llevar esa fuerza de nuestra historia y el repique de nuestros tambores en el pecho para enfrentar uno de los retos físicos más exigentes de Norteamérica. Caminaremos por ellos.</p>
+      <p class="lead">Soy Mauricio Fuentes. Venezuela fue mi hogar hasta que Estados Unidos me recibi&oacute; en 2016. Este junio, dos terremotos devastadores —de magnitud 7.2 y 7.5— dejaron heridas profundas en toda la naci&oacute;n: m&aacute;s de 5,000 vidas perdidas, se estima que unas 40,000 personas siguen desaparecidas, y millones de personas afectadas, incluyendo ni&ntilde;os que perdieron su hogar, a sus padres, y la estabilidad que todo ni&ntilde;o merece. <a class="read-more-link" href="venezuela.html" target="_blank" rel="noopener">Leer más →</a></p>
+      <p>Para los venezolanos, el 24 de junio siempre ha sido un d&iacute;a de valent&iacute;a y orgullo patrio — el d&iacute;a en que Sim&oacute;n Bol&iacute;var sell&oacute; nuestra independencia en la Batalla de Carabobo. Ahora, tambi&eacute;n ser&aacute; recordado por esta tragedia. Desde aqu&iacute; en Estados Unidos, decid&iacute; hacer mi parte, recaudando fondos para los ni&ntilde;os que necesitan alimento, refugio, protecci&oacute;n y esperanza.</p>
+      <p>Mi primo Alfredo y yo llevamos la fuerza de nuestra historia hacia uno de los retos de resistencia m&aacute;s exigentes de Norteam&eacute;rica: el <strong>John Muir Trail</strong>. Te invitamos a seguir nuestra traves&iacute;a cada d&iacute;a — las vistas impresionantes del sendero, pero sobre todo, el sudor, la determinaci&oacute;n y el coraz&oacute;n que le dedicamos a esta causa. Puedes comprometerte con cualquier monto por milla, o hacer una donaci&oacute;n &uacute;nica.</p>
       <a class="story-cta" href="#donate">Ayúdanos a hacerlo posible — Donar ahora →</a>
+      <p>Que Dios los bendiga, y &ldquo;Gloria al Bravo Pueblo&rdquo;
+        <svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="Venezuela"><rect width="3" height="0.667" fill="#FCD116"/><rect width="3" height="0.667" y="0.667" fill="#00247D"/><rect width="3" height="0.667" y="1.333" fill="#CF142B"/></svg>
+        &#9834;
+      </p>
     </div>
 
   </div>
@@ -719,12 +733,12 @@
     <div data-lang="en">
       <p class="eyebrow">The challenge</p>
       <h2>The John Muir Trail</h2>
-      <p style="color:var(--charcoal-soft);">We'll cross the Sierra Nevada in California, from Yosemite National Park to the summit of Mount Whitney — the highest point in the contiguous United States.</p>
+      <p style="color:var(--charcoal-soft);">We will cross the Sierra Nevada from Yosemite National Park to the summit of Mount Whitney — the highest peak in the contiguous United States — hiking 211 miles and climbing roughly 46,000 feet of elevation, over 18–22 days.</p>
     </div>
     <div data-lang="es">
       <p class="eyebrow">El reto</p>
       <h2>El John Muir Trail</h2>
-      <p style="color:var(--charcoal-soft);">Cruzaremos la Sierra Nevada de California, desde el Parque Nacional Yosemite hasta la cima del Monte Whitney, el punto más alto de los Estados Unidos contiguos.</p>
+      <p style="color:var(--charcoal-soft);">Cruzaremos la Sierra Nevada desde el Parque Nacional Yosemite hasta la cima del Monte Whitney — el punto m&aacute;s alto de los Estados Unidos continentales — recorriendo 211 millas y ascendiendo cerca de 46,000 pies de elevaci&oacute;n, a lo largo de 18 a 22 d&iacute;as.</p>
     </div>
 
     <div class="stat-grid">
@@ -745,15 +759,16 @@
       </div>
     </div>
 
-    <!-- Live location: Garmin inReach MapShare, embedded via Garmin's
-         own official iframe method (works over satellite, so it
-         updates even without cell signal on the trail). Won't show
-         a real track until the trek actually starts. -->
+    <!-- Route map: real trail map image, uploaded to /photos as
+         JohnMuirTrail.jpg. Falls back to a simple text note if it's
+         missing (e.g. before it's been uploaded yet). -->
     <div class="map-card">
-      <p class="map-live-note" data-lang="en">Live GPS tracking via Garmin inReach &mdash; updates by satellite, even without cell signal.</p>
-      <p class="map-live-note" data-lang="es">Rastreo GPS en vivo v&iacute;a Garmin inReach &mdash; se actualiza por sat&eacute;lite, incluso sin se&ntilde;al celular.</p>
-      <div class="map-embed-wrap">
-        <iframe class="map-embed" src="https://share.garmin.com/JMTVZLA" title="Live GPS tracking — Garmin inReach"></iframe>
+      <img class="map-img" src="photos/JohnMuirTrail.jpg" alt="Map of the John Muir Trail"
+           onclick="openLightbox(this)"
+           onerror="this.style.display='none'; document.getElementById('mapImgFallback').style.display='flex';">
+      <div id="mapImgFallback" class="map-img-fallback" style="display:none;">
+        <span data-lang="en">Trail map coming soon</span>
+        <span data-lang="es">Mapa del sendero pr&oacute;ximamente</span>
       </div>
     </div>
   </div>
@@ -789,12 +804,12 @@
     <div data-lang="en">
       <p class="eyebrow">How to help</p>
       <h2>$1+ for every mile we walk</h2>
-      <p style="color:var(--charcoal-soft);">100% of what's raised goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, providing food, shelter, and psychological support to children orphaned by the earthquakes.</p>
+      <p style="color:var(--charcoal-soft);">100% of what's raised — every contribution, big or small — goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, an organization that's supported children in our country since 2017 and is now focused on those affected by this tragedy, providing food, shelter, and psychological support.</p>
     </div>
     <div data-lang="es">
       <p class="eyebrow">Cómo puedes ayudar</p>
       <h2>$1+ por cada milla que caminemos</h2>
-      <p style="color:var(--charcoal-soft);">El 100% de lo recaudado se dona directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, para garantizar alimentación, refugio y apoyo psicológico a los niños huérfanos por esta tragedia.</p>
+      <p style="color:var(--charcoal-soft);">El 100% de lo recaudado —cada aporte, grande o pequeño— va directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, una organización que apoya a niños en nuestro país desde 2017 y que hoy está enfocada en quienes fueron afectados por esta tragedia, garantizando alimentación, refugio y apoyo psicológico.</p>
     </div>
 
     <p class="ways-heading" data-lang="en">Ways to donate</p>
