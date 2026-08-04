@@ -306,7 +306,7 @@
   }
   .live-note{
     color:var(--charcoal-soft);
-    font-size:14px;
+    font-size:12.5px;
     margin:2px 0 16px;
     max-width:70ch;
   }
@@ -656,7 +656,7 @@
     <h1 data-lang="es">John Muir Trail para <em>Venezuela</em></h1>
 
     <p class="hero-sub" data-lang="en">Walking 211 miles of hope from Yosemite to Mount Whitney <br>for the children of Venezuela.</p>
-    <p class="hero-sub" data-lang="es">Caminando 211 millas de esperanza desde Yosemite hasta el Monte Whitney <br>por los niños de Venezuela.</p>
+    <p class="hero-sub" data-lang="es">Caminando 340 kilómetros de esperanza desde Yosemite hasta el Monte Whitney <br>por los niños de Venezuela.</p>
 
     <p class="hero-names">Mauricio Fuentes &amp; Alfredo Millán</p>
   </div>
@@ -673,8 +673,10 @@
 <div class="trail-strip">
   <div class="trail-inner">
     <div class="trail-labels">
-      <span>YOSEMITE · MI 0</span>
-      <span class="end">MT. WHITNEY · MI 211</span>
+      <span data-lang="en">YOSEMITE · MI 0</span>
+      <span data-lang="es">YOSEMITE · KM 0</span>
+      <span class="end" data-lang="en">MT. WHITNEY · MI 211</span>
+      <span class="end" data-lang="es">MT. WHITNEY · KM 340</span>
     </div>
     <div class="trail-track">
       <div class="trail-fill" id="trailFill"></div>
@@ -685,7 +687,7 @@
       <div class="stat">
         <div class="stat-num mono" id="statMiles">0 / 211</div>
         <div class="stat-label" data-lang="en">Miles walked</div>
-        <div class="stat-label" data-lang="es">Millas caminadas</div>
+        <div class="stat-label" data-lang="es">Kilómetros caminados</div>
       </div>
       <div class="stat">
         <div class="stat-num mono" id="statRaised">$0</div>
@@ -711,13 +713,13 @@
     <div data-lang="en">
       <p class="eyebrow">Why we're walking</p>
       <h2>A day of strength, turned into a day of loss</h2>
-      <p class="lead">Hi, I'm Mauricio Fuentes. Venezuela was my home until the United States welcomed me in 2016. This June, two devastating earthquakes — magnitude 7.2 and 7.5 — left deep scars across the nation: more than 5,000 lives lost, an estimated 40,000 still missing, and millions affected, including children who lost their homes, their parents, and the stability every child deserves. <a class="read-more-link" href="venezuela.html" target="_blank" rel="noopener">Read more →</a></p>
-      <p>For Venezuelans, June 24th is a day of courage and patriotic pride, much like July 4th in the U.S. — it marks the day Simón Bolívar secured our independence at the Battle of Carabobo. Now it will also be remembered for this disaster.</p>
+      <p class="lead">Hi, I'm Mauricio Fuentes. Venezuela was my home until the United States welcomed me in 2016. This June, two devastating earthquakes, magnitude 7.2 and 7.5, left deep scars across the nation: more than 5,000 lives lost, an estimated 40,000 still missing, and millions affected, including children who lost their homes, their parents, and the stability every child deserves. <a class="read-more-link" href="venezuela.html" target="_blank" rel="noopener">Read more →</a></p>
+      <p>For Venezuelans, June 24th is a day of courage and patriotic pride, much like July 4th in the U.S. It marks the day Simón Bolívar secured our independence at the Battle of Carabobo. Now it will also be remembered for this disaster.</p>
       <p>From here in the U.S., I've decided to do my part, raising funds for the children who need food, shelter, protection, and hope. My cousin Alfredo and I are carrying the strength of our history into one of North America's most demanding endurance challenges: the <strong>John Muir Trail</strong>.</p>
-      <p>We invite you to follow our journey each day — the breathtaking views of the trail, but more importantly, the sweat, determination, and heart we're dedicating to this cause.</p>
+      <p>We invite you to follow our journey. We'll share the breathtaking views of the trail, but more importantly, the sweat, determination, and heart we're dedicating to this cause.</p>
 
       <p class="eyebrow eyebrow-lg">How you can help</p>
-      <p>You can pledge any amount per mile, or make a one-time gift. 100% of what's raised — every contribution, big or small — goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, an organization that's supported children in our country since 2017 and is now focused on those affected by this tragedy, providing food, shelter, and psychological support.</p>
+      <p>You can pledge any amount per mile, or make a one-time gift. 100% of what's raised, every contribution big or small, goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, an organization that's supported children in our country since 2017 and is now focused on those affected by this tragedy, providing food, shelter, and psychological support.</p>
 
       <p>May God bless you, and &ldquo;Gloria al Bravo Pueblo&rdquo;
         <svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="Venezuela"><rect width="3" height="0.667" fill="#FCD116"/><rect width="3" height="0.667" y="0.667" fill="#00247D"/><rect width="3" height="0.667" y="1.333" fill="#CF142B"/><circle cx="1.00" cy="1.05" r="0.05" fill="#FFF"/><circle cx="1.13" cy="0.95" r="0.05" fill="#FFF"/><circle cx="1.26" cy="0.88" r="0.05" fill="#FFF"/><circle cx="1.40" cy="0.85" r="0.05" fill="#FFF"/><circle cx="1.60" cy="0.85" r="0.05" fill="#FFF"/><circle cx="1.74" cy="0.88" r="0.05" fill="#FFF"/><circle cx="1.87" cy="0.95" r="0.05" fill="#FFF"/><circle cx="2.00" cy="1.05" r="0.05" fill="#FFF"/></svg>
@@ -726,7 +728,7 @@
       </p>
 
       <div class="memo-note">
-        Add <span class="mono">"John Muir Trail Vzla"</span> in the note so your gift is counted toward this walk — and feel free to email your receipt to <span class="mono">proyectodelamanomia@gmail.com</span>.
+        Add <span class="mono">"John Muir Trail Vzla"</span> in the note so your gift is counted toward this walk, and feel free to email your receipt to <span class="mono">proyectodelamanomia@gmail.com</span>.
       </div>
 
       <a class="btn" href="https://fundacionproyectodelamano.org/donate" target="_blank" rel="noopener">Donate now →</a>
@@ -735,14 +737,14 @@
 
     <div data-lang="es">
       <p class="eyebrow">Por qué caminamos</p>
-      <h2>Un día de fuerza, convertido en un día de pérdida</h2>
-      <p class="lead">Soy Mauricio Fuentes. Venezuela fue mi hogar hasta que Estados Unidos me recibi&oacute; en 2016. Este junio, dos terremotos devastadores —de magnitud 7.2 y 7.5— dejaron heridas profundas en toda la naci&oacute;n: m&aacute;s de 5,000 vidas perdidas, se estima que unas 40,000 personas siguen desaparecidas, y millones de personas afectadas, incluyendo ni&ntilde;os que perdieron su hogar, a sus padres, y la estabilidad que todo ni&ntilde;o merece. <a class="read-more-link" href="venezuela.html" target="_blank" rel="noopener">Leer más →</a></p>
-      <p>Para los venezolanos, el 24 de junio es un d&iacute;a de valent&iacute;a y orgullo patrio — el d&iacute;a en que Sim&oacute;n Bol&iacute;var sell&oacute; nuestra independencia en la Batalla de Carabobo. Ahora, tambi&eacute;n ser&aacute; recordado por esta tragedia.</p>
-      <p>Desde aqu&iacute; en Estados Unidos, decid&iacute; hacer mi parte, recaudando fondos para los ni&ntilde;os que necesitan alimento, refugio, protecci&oacute;n y esperanza. Mi primo Alfredo y yo llevamos la fuerza de nuestra historia hacia uno de los retos de resistencia m&aacute;s exigentes de Norteam&eacute;rica: el <strong>John Muir Trail</strong>.</p>
-      <p>Te invitamos a seguir nuestra traves&iacute;a cada d&iacute;a — las vistas impresionantes del sendero, pero sobre todo, el sudor, la determinaci&oacute;n y el coraz&oacute;n que le dedicamos a esta causa.</p>
+      <h2>Un día de gloria, hoy también de dolor</h2>
+      <p class="lead">Soy Mauricio Fuentes. Venezuela fue mi hogar hasta que Estados Unidos me recibi&oacute; en 2016. En junio, dos terremotos devastadores de magnitud 7.2 y 7.5 dejaron heridas profundas en toda la naci&oacute;n: m&aacute;s de 5,000 vidas perdidas, al menos 40,000 personas a&uacute;n desaparecidas, y millones de personas afectadas, incluyendo ni&ntilde;os que perdieron su hogar, a sus padres, y la estabilidad que merecen. <a class="read-more-link" href="venezuela.html" target="_blank" rel="noopener">Leer más →</a></p>
+      <p>Para los venezolanos, el 24 de junio es un d&iacute;a de valent&iacute;a y orgullo patri&oacute;tico: el d&iacute;a en que Sim&oacute;n Bol&iacute;var sell&oacute; nuestra independencia en la Batalla de Carabobo. Ahora, esa misma fecha tambi&eacute;n ser&aacute; recordada por esta tragedia.</p>
+      <p>Desde Estados Unidos, decid&iacute; hacer mi parte recaudando fondos para los ni&ntilde;os que necesitan alimento, refugio, protecci&oacute;n y esperanza. Mi primo Alfredo y yo afrontamos, con la fuerza de nuestra historia, uno de los retos de resistencia m&aacute;s exigentes de Norteam&eacute;rica: el <strong>John Muir Trail</strong>.</p>
+      <p>Te invitamos a seguir nuestra traves&iacute;a. Compartiremos las vistas impresionantes del sendero, pero sobre todo, el sudor, la determinaci&oacute;n y el coraz&oacute;n que le dedicamos a esta causa.</p>
 
       <p class="eyebrow eyebrow-lg">Cómo puedes ayudar</p>
-      <p>Puedes comprometerte con cualquier monto por milla, o hacer una donaci&oacute;n &uacute;nica. El 100% de lo recaudado —cada aporte, grande o pequeño— va directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, una organización que apoya a niños en nuestro país desde 2017 y que hoy está enfocada en quienes fueron afectados por esta tragedia, garantizando alimentación, refugio y apoyo psicológico.</p>
+      <p>Puedes contribuir con cualquier monto por kil&oacute;metro caminado o hacer una donaci&oacute;n &uacute;nica. El 100% de lo recaudado, cada aporte grande o peque&ntilde;o, va directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>, una organización que apoya a niños en nuestro país desde 2017 y que hoy brinda alimentación, refugio y apoyo psicológico a quienes fueron afectados por esta tragedia.</p>
 
       <p>Que Dios los bendiga, y &ldquo;Gloria al Bravo Pueblo&rdquo;
         <svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="Venezuela"><rect width="3" height="0.667" fill="#FCD116"/><rect width="3" height="0.667" y="0.667" fill="#00247D"/><rect width="3" height="0.667" y="1.333" fill="#CF142B"/><circle cx="1.00" cy="1.05" r="0.05" fill="#FFF"/><circle cx="1.13" cy="0.95" r="0.05" fill="#FFF"/><circle cx="1.26" cy="0.88" r="0.05" fill="#FFF"/><circle cx="1.40" cy="0.85" r="0.05" fill="#FFF"/><circle cx="1.60" cy="0.85" r="0.05" fill="#FFF"/><circle cx="1.74" cy="0.88" r="0.05" fill="#FFF"/><circle cx="1.87" cy="0.95" r="0.05" fill="#FFF"/><circle cx="2.00" cy="1.05" r="0.05" fill="#FFF"/></svg>
@@ -750,7 +752,7 @@
       </p>
 
       <div class="memo-note">
-        Agrega <span class="mono">"John Muir Trail Vzla"</span> en la descripción para que tu aporte cuente para esta caminata — y si quieres, envía tu comprobante a <span class="mono">proyectodelamanomia@gmail.com</span>.
+        Agrega <span class="mono">"John Muir Trail Vzla"</span> en la descripción para que tu aporte cuente para esta caminata, y si quieres, envía tu comprobante a <span class="mono">proyectodelamanomia@gmail.com</span>.
       </div>
 
       <a class="btn" href="https://fundacionproyectodelamano.org/donate" target="_blank" rel="noopener">Donar ahora →</a>
@@ -768,24 +770,26 @@
     <div data-lang="en">
       <p class="eyebrow">The challenge</p>
       <h2>The John Muir Trail</h2>
-      <p style="color:var(--charcoal-soft);">We will cross the Sierra Nevada from Yosemite National Park to the summit of Mount Whitney — the highest peak in the contiguous United States.</p>
+      <p style="color:var(--charcoal-soft);">We will cross the Sierra Nevada from Yosemite National Park to the summit of Mount Whitney, the highest peak in the contiguous United States.</p>
     </div>
     <div data-lang="es">
       <p class="eyebrow">El reto</p>
       <h2>El John Muir Trail</h2>
-      <p style="color:var(--charcoal-soft);">Cruzaremos la Sierra Nevada desde el Parque Nacional Yosemite hasta la cima del Monte Whitney — el punto m&aacute;s alto de los Estados Unidos continentales.</p>
+      <p style="color:var(--charcoal-soft);">Cruzaremos la Sierra Nevada desde el Parque Nacional Yosemite hasta la cima del Monte Whitney, el punto m&aacute;s alto de los Estados Unidos continentales.</p>
     </div>
 
     <div class="stat-grid">
       <div>
-        <div class="sg-num">211 mi</div>
-        <div class="sg-label" data-lang="en">340 KM DISTANCE</div>
-        <div class="sg-label" data-lang="es">340 KM DE DISTANCIA</div>
+        <div class="sg-num" data-lang="en">211 mi</div>
+        <div class="sg-num" data-lang="es">340 km</div>
+        <div class="sg-label" data-lang="en">DISTANCE</div>
+        <div class="sg-label" data-lang="es">DISTANCIA</div>
       </div>
       <div>
-        <div class="sg-num">46,000 ft</div>
-        <div class="sg-label" data-lang="en">14,000 M ELEVATION GAIN</div>
-        <div class="sg-label" data-lang="es">14,000 M DE ASCENSO</div>
+        <div class="sg-num" data-lang="en">46,000 ft</div>
+        <div class="sg-num" data-lang="es">14,000 m</div>
+        <div class="sg-label" data-lang="en">ELEVATION GAIN</div>
+        <div class="sg-label" data-lang="es">ASCENSO</div>
       </div>
       <div>
         <div class="sg-num">18–22</div>
@@ -810,14 +814,14 @@
     <div class="live-tracker">
       <div data-lang="en">
         <p class="eyebrow">Follow Our Journey</p>
-        <p class="live-note">Mauricio and Alfredo are carrying a satellite GPS device — since most of the trail has no cell signal, this map only updates when they check in, not in real time.</p>
+        <p class="live-note">Mauricio and Alfredo are carrying a satellite GPS device. Since most of the trail has no cell signal, this map only updates when they check in, not in real time.</p>
       </div>
       <div data-lang="es">
         <p class="eyebrow">Sigue Nuestra Travesía</p>
-        <p class="live-note">Mauricio y Alfredo llevan un GPS satelital — como la mayor parte del sendero no tiene se&ntilde;al celular, este mapa solo se actualiza cuando se conectan, no en tiempo real.</p>
+        <p class="live-note">Mauricio y Alfredo llevan un GPS satelital. Como la mayor parte del sendero no tiene se&ntilde;al celular, este mapa solo se actualiza cuando se conectan, no en tiempo real.</p>
       </div>
       <div class="live-tracker-frame">
-        <iframe src="https://share.garmin.com/JMTXVZLA" frameborder="0" title="Live location — Garmin inReach"></iframe>
+        <iframe src="https://share.garmin.com/JMTXVZLA" frameborder="0" title="Live location, Garmin inReach"></iframe>
       </div>
     </div>
   </div>
@@ -849,8 +853,8 @@
 <!-- ========== DISCLAIMER ========== -->
 <section class="disclaimer section-tight">
   <div class="wrap">
-    <p data-lang="en"><strong>About this page —</strong> this is an independent, unofficial tracker built by family to follow Mauricio's walk. It does not collect, hold, or process any funds. Every donation goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a> through the official channels above.</p>
-    <p data-lang="es"><strong>Sobre esta página —</strong> esta es una página de seguimiento independiente y no oficial, hecha por la familia para acompañar la caminata de Mauricio. No recolecta, retiene ni procesa fondos. Cada donación va directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a> a través de los canales oficiales arriba.</p>
+    <p data-lang="en"><strong>About this page.</strong> This is an independent, unofficial tracker built by family to follow Mauricio's walk. It does not collect, hold, or process any funds. Every donation goes directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a> through the official channels above.</p>
+    <p data-lang="es"><strong>Sobre esta página.</strong> Esta es una página de seguimiento independiente y no oficial, hecha por la familia para acompañar la caminata de Mauricio. No recolecta, retiene ni procesa fondos. Cada donación va directamente a la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a> a través de los canales oficiales arriba.</p>
   </div>
 </section>
 
@@ -858,7 +862,7 @@
   <div class="wrap">
     <div class="flag-line"></div>
     <p data-lang="en">JMT FOR VENEZUELA - 211 MILES OF HOPE · YOSEMITE → MT. WHITNEY · 2026</p>
-    <p data-lang="es">JMT POR VENEZUELA - 211 MILLAS DE ESPERANZA · YOSEMITE → MT. WHITNEY · 2026</p>
+    <p data-lang="es">JMT POR VENEZUELA - 340 KILÓMETROS DE ESPERANZA · YOSEMITE → MT. WHITNEY · 2026</p>
   </div>
 </footer>
 
@@ -874,7 +878,7 @@
     totalMiles: 211,
     amountRaised: 0,            // estimated dollars raised so far
     startDate: "2026-08-05",    // trek start date, YYYY-MM-DD — confirm 08-04 vs 08-05
-    lastUpdated: "2026-07-28"   // format: YYYY-MM-DD
+    lastUpdated: "2026-08-03"   // format: YYYY-MM-DD
   };
 
   // Trail checkpoints used for the route map + legend below.
@@ -919,7 +923,7 @@
         grid.innerHTML = photos.map(function(p){
           const cap = p['caption' + (currentLang === 'es' ? 'Es' : 'En')] || '';
           const capHtml = cap ? '<div class="photo-caption mono">' + cap + '</div>' : '';
-          return '<div class="photo-slot"><img src="photos/' + p.file + '" alt="211 Millas de Esperanza — John Muir Trail" loading="lazy" onclick="openLightbox(this)">' + capHtml + '</div>';
+          return '<div class="photo-slot"><img src="photos/' + p.file + '" alt="211 Millas de Esperanza, John Muir Trail" loading="lazy" onclick="openLightbox(this)">' + capHtml + '</div>';
         }).join('');
       })
       .catch(function(){ /* stay on placeholders — no manifest yet, or offline */ });
@@ -929,7 +933,7 @@
     const pct = Math.min(100, (CAMPAIGN_DATA.milesWalked / CAMPAIGN_DATA.totalMiles) * 100);
     document.getElementById('trailFill').style.width = pct + '%';
     document.getElementById('trailMarker').style.left = pct + '%';
-    document.getElementById('statMiles').textContent = CAMPAIGN_DATA.milesWalked + ' / ' + CAMPAIGN_DATA.totalMiles;
+    renderMiles();
     document.getElementById('statRaised').textContent = '$' + CAMPAIGN_DATA.amountRaised.toLocaleString('en-US');
 
     const d = new Date(CAMPAIGN_DATA.lastUpdated + 'T00:00:00');
@@ -939,12 +943,23 @@
     renderDayText();
   }
 
+  function renderMiles(){
+    const el = document.getElementById('statMiles');
+    if (currentLang === 'es') {
+      const km = Math.round(CAMPAIGN_DATA.milesWalked * 1.60934);
+      el.textContent = km + ' / 340';
+    } else {
+      el.textContent = CAMPAIGN_DATA.milesWalked + ' / ' + CAMPAIGN_DATA.totalMiles;
+    }
+  }
+
   function setLang(lang) {
     currentLang = lang;
     document.documentElement.setAttribute('data-active-lang', lang);
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('btn-es').classList.toggle('active', lang === 'es');
     renderDayText();
+    renderMiles();
     loadPhotos();
     syncHeaderHeight();
   }
