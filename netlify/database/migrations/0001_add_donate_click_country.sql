@@ -1,0 +1,3 @@
+ALTER TABLE IF EXISTS donate_clicks
+  ADD COLUMN IF NOT EXISTS country_code TEXT,
+  ADD COLUMN IF NOT EXISTS country_name TEXT;

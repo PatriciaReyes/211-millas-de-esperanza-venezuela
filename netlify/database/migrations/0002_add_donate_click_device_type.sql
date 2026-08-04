@@ -1,0 +1,2 @@
+ALTER TABLE IF EXISTS donate_clicks
+  ADD COLUMN IF NOT EXISTS device_type TEXT;
