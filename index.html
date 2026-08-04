@@ -307,9 +307,21 @@
   .live-note{
     color:var(--charcoal-soft);
     font-size:12.5px;
-    margin:2px 0 16px;
-    max-width:70ch;
+    margin:2px 0 12px;
   }
+  .live-link{
+    display:inline-block;
+    margin-bottom:14px;
+    color:var(--alpenglow);
+    font-family:'Oswald', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.03em;
+    text-decoration:underline;
+    text-decoration-color:var(--alpenglow-dim);
+    text-underline-offset:2px;
+  }
+  .live-link:hover{text-decoration-color:var(--alpenglow);}
   .live-tracker-frame{
     width:100%;
     height:300px;
@@ -731,7 +743,7 @@
         Add <span class="mono">"John Muir Trail Vzla"</span> in the note so your gift is counted toward this walk, and feel free to email your receipt to <span class="mono">proyectodelamanomia@gmail.com</span>.
       </div>
 
-      <a class="btn" href="https://fundacionproyectodelamano.org/donate" target="_blank" rel="noopener">Donate now →</a>
+      <a class="btn" href="/donate-go?lang=en" target="_blank" rel="noopener">Donate now →</a>
       <p class="btn-sub">Takes you directly to <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>'s official donation page.</p>
     </div>
 
@@ -755,7 +767,7 @@
         Agrega <span class="mono">"John Muir Trail Vzla"</span> en la descripción para que tu aporte cuente para esta caminata, y si quieres, envía tu comprobante a <span class="mono">proyectodelamanomia@gmail.com</span>.
       </div>
 
-      <a class="btn" href="https://fundacionproyectodelamano.org/donate" target="_blank" rel="noopener">Donar ahora →</a>
+      <a class="btn" href="/donate-go?lang=es" target="_blank" rel="noopener">Donar ahora →</a>
       <p class="btn-sub">Te lleva directamente a la página oficial de donación de la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>.</p>
     </div>
 
@@ -814,11 +826,13 @@
     <div class="live-tracker">
       <div data-lang="en">
         <p class="eyebrow">Follow Our Journey</p>
-        <p class="live-note">Mauricio and Alfredo are carrying a satellite GPS device. Since most of the trail has no cell signal, this map only updates when they check in, not in real time.</p>
+        <p class="live-note">Mauricio and Alfredo carry a satellite GPS. Since most of the trail has no signal, this map only updates when they check in.</p>
+        <a class="live-link" href="https://share.garmin.com/JMTXVZLA" target="_blank" rel="noopener">Follow along here →</a>
       </div>
       <div data-lang="es">
         <p class="eyebrow">Sigue Nuestra Travesía</p>
-        <p class="live-note">Mauricio y Alfredo llevan un GPS satelital. Como la mayor parte del sendero no tiene se&ntilde;al celular, este mapa solo se actualiza cuando se conectan, no en tiempo real.</p>
+        <p class="live-note">Mauricio y Alfredo llevan un GPS satelital. Como la mayor parte del sendero no tiene se&ntilde;al, este mapa solo se actualiza cuando se conectan.</p>
+        <a class="live-link" href="https://share.garmin.com/JMTXVZLA" target="_blank" rel="noopener">Síguenos aquí →</a>
       </div>
       <div class="live-tracker-frame">
         <iframe src="https://share.garmin.com/JMTXVZLA" frameborder="0" title="Live location, Garmin inReach"></iframe>
