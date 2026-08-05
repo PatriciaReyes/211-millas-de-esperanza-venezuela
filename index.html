@@ -824,7 +824,7 @@
       </div>
     </div>
 
-    <div class="live-tracker" id="liveTracker" style="display:none;">
+    <div class="live-tracker">
       <div data-lang="en">
         <p class="eyebrow">Follow Our Journey</p>
         <p class="live-note">Mauricio and Alfredo carry a satellite GPS. Since most of the trail has no signal, this map only updates when they check in.</p>
@@ -925,11 +925,6 @@
     } else {
       el.textContent = (currentLang === 'es' ? 'Día ' : 'Day ') + info.day;
     }
-    // Garmin shows a generic promo screen (with an ad panel) until the
-    // first real check-in comes in. Hiding the section until the trek's
-    // start date avoids showing that placeholder to visitors.
-    const tracker = document.getElementById('liveTracker');
-    if (tracker) tracker.style.display = info.started ? 'block' : 'none';
   }
 
   function loadPhotos() {
