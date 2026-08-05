@@ -469,11 +469,52 @@
     cursor:zoom-out;
   }
   .lightbox.open{display:flex;}
-  .lightbox img{max-width:100%; max-height:100%; border-radius:2px; box-shadow:0 10px 40px rgba(0,0,0,0.5); cursor:default;}
+  .lightbox-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    max-width:100%;
+    max-height:100%;
+    cursor:default;
+  }
+  .lightbox img{max-width:100%; max-height:80vh; border-radius:2px; box-shadow:0 10px 40px rgba(0,0,0,0.5); cursor:default; display:block;}
+  .lightbox-caption{
+    color:var(--stone-dim);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    text-align:center;
+    margin-top:12px;
+    max-width:60ch;
+  }
   .lightbox-close{
     position:absolute; top:16px; right:20px;
     background:none; border:none; color:var(--white);
     font-size:32px; line-height:1; cursor:pointer; padding:6px 10px;
+    z-index:2;
+  }
+  .lightbox-nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(255,255,255,0.12);
+    border:none;
+    color:var(--white);
+    width:44px; height:44px;
+    border-radius:50%;
+    font-size:18px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background 0.15s;
+  }
+  .lightbox-nav:hover{background:rgba(255,255,255,0.24);}
+  .lightbox-prev{left:16px;}
+  .lightbox-next{right:16px;}
+  @media (max-width:600px){
+    .lightbox-nav{width:38px; height:38px; font-size:15px;}
+    .lightbox-prev{left:6px;}
+    .lightbox-next{right:6px;}
   }
   @media (max-width:600px){
     body{padding-top:76px;}
@@ -933,12 +974,13 @@
       .then(function(data){
         const photos = (data && data.photos) || [];
         if (photos.length === 0) return; // keep placeholders
+        currentPhotos = photos;
 
         const grid = document.getElementById('photoGrid');
-        grid.innerHTML = photos.map(function(p){
+        grid.innerHTML = photos.map(function(p, i){
           const cap = p['caption' + (currentLang === 'es' ? 'Es' : 'En')] || '';
           const capHtml = cap ? '<div class="photo-caption mono">' + cap + '</div>' : '';
-          return '<div class="photo-slot"><img src="photos/' + p.file + '" alt="211 Millas de Esperanza, John Muir Trail" loading="lazy" onclick="openLightbox(this)">' + capHtml + '</div>';
+          return '<div class="photo-slot"><img src="photos/' + p.file + '" alt="211 Millas de Esperanza, John Muir Trail" loading="lazy" onclick="openLightbox(' + i + ')">' + capHtml + '</div>';
         }).join('');
       })
       .catch(function(){ /* stay on placeholders — no manifest yet, or offline */ });
@@ -977,6 +1019,10 @@
     renderMiles();
     loadPhotos();
     syncHeaderHeight();
+    const lb = document.getElementById('lightbox');
+    if (lb && lb.classList.contains('open') && currentPhotos.length) {
+      updateLightboxContent();
+    }
   }
 
   function syncHeaderHeight(){
@@ -990,22 +1036,87 @@
   loadPhotos();
   syncHeaderHeight();
 
-  function openLightbox(imgEl){
-    document.getElementById('lightboxImg').src = imgEl.src;
-    document.getElementById('lightboxImg').alt = imgEl.alt;
+  let currentPhotos = [];
+  let currentPhotoIndex = 0;
+
+  function openLightbox(target){
+    if (typeof target === 'number') {
+      // gallery photo: enable carousel navigation
+      currentPhotoIndex = target;
+      updateLightboxContent();
+    } else {
+      // single image (e.g. the trail map) — no carousel
+      currentPhotos = [];
+      document.getElementById('lightboxImg').src = target.src;
+      document.getElementById('lightboxImg').alt = target.alt;
+      document.getElementById('lightboxCaption').style.display = 'none';
+      document.getElementById('lightboxPrev').style.display = 'none';
+      document.getElementById('lightboxNext').style.display = 'none';
+    }
     document.getElementById('lightbox').classList.add('open');
   }
+
+  function updateLightboxContent(){
+    const p = currentPhotos[currentPhotoIndex];
+    if (!p) return;
+    document.getElementById('lightboxImg').src = 'photos/' + p.file;
+    document.getElementById('lightboxImg').alt = '211 Millas de Esperanza, John Muir Trail';
+
+    const cap = p['caption' + (currentLang === 'es' ? 'Es' : 'En')] || '';
+    const capEl = document.getElementById('lightboxCaption');
+    capEl.textContent = cap;
+    capEl.style.display = cap ? 'block' : 'none';
+
+    const multi = currentPhotos.length > 1;
+    document.getElementById('lightboxPrev').style.display = multi ? 'flex' : 'none';
+    document.getElementById('lightboxNext').style.display = multi ? 'flex' : 'none';
+  }
+
+  function showPrevPhoto(){
+    if (currentPhotos.length === 0) return;
+    currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
+    updateLightboxContent();
+  }
+  function showNextPhoto(){
+    if (currentPhotos.length === 0) return;
+    currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length;
+    updateLightboxContent();
+  }
+
   function closeLightbox(){
     document.getElementById('lightbox').classList.remove('open');
   }
+
   document.addEventListener('keydown', function(e){
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
     if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrevPhoto();
+    if (e.key === 'ArrowRight') showNextPhoto();
+  });
+
+  // swipe support for touch devices
+  let touchStartX = null;
+  document.addEventListener('touchstart', function(e){
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    touchStartX = e.touches[0].clientX;
+  });
+  document.addEventListener('touchend', function(e){
+    if (touchStartX === null) return;
+    if (!document.getElementById('lightbox').classList.contains('open')) { touchStartX = null; return; }
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) { dx > 0 ? showPrevPhoto() : showNextPhoto(); }
+    touchStartX = null;
   });
 </script>
 
 <div id="lightbox" class="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
-  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+  <button id="lightboxPrev" class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); showPrevPhoto();" aria-label="Previous photo">&#10094;</button>
+  <div class="lightbox-content" onclick="event.stopPropagation()">
+    <img id="lightboxImg" src="" alt="">
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+  </div>
+  <button id="lightboxNext" class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); showNextPhoto();" aria-label="Next photo">&#10095;</button>
 </div>
 
 </body>

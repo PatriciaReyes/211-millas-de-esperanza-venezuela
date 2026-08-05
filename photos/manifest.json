@@ -2,18 +2,18 @@
   "photos": [
     {
       "file": "05aug_beginning.jpg",
-      "captionEn": "Let the Adventure begin!",
-      "captionEs": "Que empiece la Aventura!"
+      "captionEn": "D1. Let the Adventure begin!",
+      "captionEs": "D1. Que empiece la Aventura!"
     },
     {
       "file": "05aug_HappyIslandg.jpg",
-      "captionEn": "On our way to JMT",
-      "captionEs": "En camino a JMT"
+      "captionEn": "D1. On our way to JMT",
+      "captionEs": "D1. En camino a JMT"
     },
     {
       "file": "05aug_jmtMauricio.jpg",
-      "captionEn": "Here we go - John Muir Trail",
-      "captionEs": "Aquí vamos - Sendero John Muir"
+      "captionEn": "D1. Here we go - John Muir Trail",
+      "captionEs": "D1. Aquí vamos - Sendero John Muir"
     }
   ]
 }
