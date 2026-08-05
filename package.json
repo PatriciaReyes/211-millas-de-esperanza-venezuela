@@ -1,0 +1,8 @@
+{
+  "name": "johnmuirtrailforvenezuela",
+  "private": true,
+  "dependencies": {
+    "@netlify/database": "1.1.0",
+    "@netlify/functions": "5.3.0"
+  }
+}
