@@ -6,13 +6,13 @@
 <title>John Muir Trail for Venezuela</title>
 <meta property="og:title" content="John Muir Trail for Venezuela">
 <meta property="og:description" content="211 miles across the Sierra Nevada, raising funds for the children of Venezuela after the June 24th earthquakes.">
-<meta property="og:image" content="https://211millasdeesperanza.netlify.app/photos/og-image.jpg">
+<meta property="og:image" content="https://211millasdeesperanza.netlify.app/photos/og-image-new.jpg">
 <meta property="og:url" content="https://211millasdeesperanza.netlify.app/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="John Muir Trail for Venezuela">
 <meta name="twitter:description" content="211 miles across the Sierra Nevada, raising funds for the children of Venezuela after the June 24th earthquakes.">
-<meta name="twitter:image" content="https://211millasdeesperanza.netlify.app/photos/og-image.jpg">
+<meta name="twitter:image" content="https://211millasdeesperanza.netlify.app/photos/og-image-new.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,opt@0,9..40;1,9..40&family=Source+Serif+4:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -334,27 +334,18 @@
   .live-link:hover{text-decoration-color:var(--alpenglow);}
   .live-tracker-frame{
     width:100%;
-    height:300px;
+    height:420px;
     border:1px solid var(--line);
     border-radius:2px;
     overflow:hidden;
-    position:relative;
   }
-  /* Garmin doesn't offer a "map only" embed — this crops their sidebar
-     panel by rendering the iframe wider than the visible box and
-     shifting it left. --sidebar-w is an estimate; adjust it if the
-     panel still peeks in, or if too much of the map gets cut off. */
-  .live-tracker-frame{ --sidebar-w: 300px; }
   .live-tracker-frame iframe{
-    position:absolute;
-    top:0;
-    left:calc(-1 * var(--sidebar-w));
-    width:calc(100% + var(--sidebar-w));
+    width:100%;
     height:100%;
     border:0;
   }
   @media (max-width:600px){
-    .live-tracker-frame{height:260px; --sidebar-w:220px;}
+    .live-tracker-frame{height:340px;}
   }
 
   /* ---------- sections ---------- */
@@ -791,7 +782,7 @@
       </p>
 
       <div class="memo-note">
-        Add <span class="mono">"John Muir Trail Vzla"</span> or <span class="mono">"JMT Vzla"</span> in the note so your gift is counted toward this walk, and feel free to email your receipt to <span class="mono">proyectodelamanomia@gmail.com</span>.
+        Add <span class="mono">"John Muir Trail Vzla"</span> in the note so your gift is counted toward this walk, and feel free to email your receipt to <span class="mono">proyectodelamanomia@gmail.com</span>.
       </div>
 
       <a class="btn" href="https://fundacionproyectodelamano.org/donate" target="_blank" rel="noopener" onclick="try{navigator.sendBeacon('/donate-go?lang=en')}catch(e){}">Donate now →</a>
@@ -815,7 +806,7 @@
       </p>
 
       <div class="memo-note">
-        Agrega <span class="mono">"Sendero John Muir Vzla"</span> o <span class="mono">"JMT Vzla"</span> en la descripción para que tu aporte cuente para esta caminata, y si quieres, envía tu comprobante a <span class="mono">proyectodelamanomia@gmail.com</span>.
+        Agrega <span class="mono">"John Muir Trail Vzla"</span> en la descripción para que tu aporte cuente para esta caminata, y si quieres, envía tu comprobante a <span class="mono">proyectodelamanomia@gmail.com</span>.
       </div>
 
       <a class="btn" href="https://fundacionproyectodelamano.org/donate" target="_blank" rel="noopener" onclick="try{navigator.sendBeacon('/donate-go?lang=es')}catch(e){}">Donar ahora →</a>
@@ -877,16 +868,16 @@
     <div class="live-tracker">
       <div data-lang="en">
         <p class="eyebrow">Follow Our Journey</p>
-        <p class="live-note">Mauricio and Alfredo carry a satellite GPS. Since most of the trail has no signal, this map only updates when they check in.</p>
-        <a class="live-link" href="https://share.garmin.com/JMTXVZLA" target="_blank" rel="noopener">Follow along here →</a>
+        <p class="live-note">Since most of the trail has no signal, this map is updated whenever Mauricio and Alfredo are able to check in.</p>
+        <a class="live-link" href="https://www.google.com/maps/d/viewer?mid=1U89Ab8oyaIxBf_Q038_cFArHUOcH2LQ" target="_blank" rel="noopener">Open full map →</a>
       </div>
       <div data-lang="es">
         <p class="eyebrow">Sigue Nuestra Travesía</p>
-        <p class="live-note">Mauricio y Alfredo llevan un GPS satelital. Como la mayor parte del sendero no tiene se&ntilde;al, este mapa solo se actualiza cuando se conectan.</p>
-        <a class="live-link" href="https://share.garmin.com/JMTXVZLA" target="_blank" rel="noopener">Síguenos aquí →</a>
+        <p class="live-note">Como la mayor parte del sendero no tiene se&ntilde;al, este mapa se actualiza cada vez que Mauricio y Alfredo logran conectarse.</p>
+        <a class="live-link" href="https://www.google.com/maps/d/viewer?mid=1U89Ab8oyaIxBf_Q038_cFArHUOcH2LQ" target="_blank" rel="noopener">Ver mapa completo →</a>
       </div>
       <div class="live-tracker-frame">
-        <iframe src="https://share.garmin.com/JMTXVZLA" frameborder="0" title="Live location, Garmin inReach"></iframe>
+        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1U89Ab8oyaIxBf_Q038_cFArHUOcH2LQ&ehbc=2E312F" title="John Muir Trail route map"></iframe>
       </div>
     </div>
   </div>
@@ -939,11 +930,11 @@
      marker both calculate themselves from these.
      ============================================================ */
   const CAMPAIGN_DATA = {
-    milesWalked: 8,             // how many of the 211 miles they've completed
+    milesWalked: 0,             // how many of the 211 miles they've completed
     totalMiles: 211,
     amountRaised: 125,            // estimated dollars raised so far
     startDate: "2026-08-05",    // trek start date, YYYY-MM-DD — confirm 08-04 vs 08-05
-    lastUpdated: "2026-08-05"   // format: YYYY-MM-DD
+    lastUpdated: "2026-08-06"   // format: YYYY-MM-DD
   };
 
   // Trail checkpoints used for the route map + legend below.
