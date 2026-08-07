@@ -12,7 +12,7 @@ const getDeviceType = (request: Request) => {
   return "desktop";
 };
 
-export default async (request: Request, context: Context) => {
+const recordClick = async (request: Request, context: Context) => {
   const requestedLanguage = new URL(request.url).searchParams.get("lang");
   const language = requestedLanguage === "es" ? "es" : "en";
   const countryCode = context.geo.country.code;
@@ -40,7 +40,20 @@ export default async (request: Request, context: Context) => {
   } catch (error) {
     console.error("Failed to record donate-button click", error);
   }
+};
 
+export default async (request: Request, context: Context) => {
+  await recordClick(request, context);
+
+  // POST = navigator.sendBeacon() firing in the background while the
+  // button's own href already sends the browser straight to the donation
+  // page. No redirect wanted here — just acknowledge and log.
+  if (request.method === "POST") {
+    return new Response(null, { status: 204 });
+  }
+
+  // GET = someone hit /donate-go directly (old links, etc.) — still
+  // honor it with a redirect for backward compatibility.
   return new Response(null, {
     status: 302,
     headers: {
@@ -52,5 +65,5 @@ export default async (request: Request, context: Context) => {
 
 export const config: Config = {
   path: "/donate-go",
-  method: "GET",
+  method: ["GET", "POST"],
 };
