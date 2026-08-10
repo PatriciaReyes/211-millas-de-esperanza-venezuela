@@ -426,7 +426,7 @@
   /* photos */
   .photo-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:12px;
     margin-top:24px;
   }
@@ -521,7 +521,7 @@
   }
   @media (max-width:600px){
     body{padding-top:76px;}
-    .photo-grid{grid-template-columns:1fr;}
+    .photo-grid{grid-template-columns:repeat(2,1fr);}
     .hero{padding-top:30px; padding-bottom:170px;}
     .ridge-green{height:240px;}
     .trail-inner{padding:16px 20px 14px;}
@@ -760,8 +760,8 @@
       </div>
     </div>
 
-    <p class="trail-updated" data-lang="en">Last updated <span id="dateEn"></span> · <em>Figures are an estimate, combining Zelle/Venmo reports from <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>.</em></p>
-    <p class="trail-updated" data-lang="es">Última actualización <span id="dateEs"></span> · <em>Las cifras son un estimado, combinando notas de Zelle/Venmo y reportes de la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>.</em></p>
+    <p class="trail-updated" data-lang="en">Last updated <span id="dateEn"></span> (refreshed every few days)· <em>Figures are an estimate, combining Zelle/Venmo reports from <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>.</em></p>
+    <p class="trail-updated" data-lang="es">Última actualización <span id="dateEs"></span> (se actualiza cada varios días)· <em>Las cifras son un estimado, combinando notas de Zelle/Venmo y reportes de la <a class="org-link" href="https://fundacionproyectodelamano.org/" target="_blank" rel="noopener">Fundación Proyecto de la Mano</a>.</em></p>
   </div>
 </div>
 
@@ -935,7 +935,7 @@
      marker both calculate themselves from these.
      ============================================================ */
   const CAMPAIGN_DATA = {
-    milesWalked: 15,             // how many of the 211 miles they've completed
+    milesWalked: 57,             // how many of the 211 miles they've completed
     totalMiles: 211,
     amountRaised: 125,            // estimated dollars raised so far
     startDate: "2026-08-05",    // trek start date, YYYY-MM-DD — confirm 08-04 vs 08-05

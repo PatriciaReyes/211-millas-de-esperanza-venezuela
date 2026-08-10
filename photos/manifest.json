@@ -11,6 +11,11 @@
       "captionEs": "D1. Aquí vamos - Sendero John Muir"
     },
     {
+      "file": "05aug_trailAlfredo.jpeg",
+      "captionEn": "D1. Trail stops",
+      "captionEs": "D1. Puntos del Sendero"
+    },
+    {
       "file": "05aug_resting.jpeg",
       "captionEn": "D1. Taking a break with a view",
       "captionEs": "D1. Descansando y contemplando la vista"
@@ -21,19 +26,79 @@
       "captionEs": "D1. Cascada y Vally"
     },
     {
-      "file": "05aug_HalfDome.jpeg",
-      "captionEn": "D1. Half Dome",
-      "captionEs": "D1. Half Dome"
+      "file": "06aug_HalfDome.jpeg",
+      "captionEn": "D2. Half Dome",
+      "captionEs": "D2. Half Dome"
     },
     {
-      "file": "05aug_topOfTheRock.jpeg",
-      "captionEn": "D1. Top of the Rock!",
-      "captionEs": "D1. Cima de la montaña"
+      "file": "06aug_topOfTheRock.jpeg",
+      "captionEn": "D2. Top of the Rock!",
+      "captionEs": "D2. Cima de la montaña"
     },
     {
-      "file": "05aug_inmensity.jpeg",
-      "captionEn": "D1. Contemplating the beuty of nature",
-      "captionEs": "D1. Contemplando las bellezas naturales"
+      "file": "06aug_inmensity.jpeg",
+      "captionEn": "D2. Contemplating the beuty of nature",
+      "captionEs": "D2. Contemplando las bellezas naturales"
+    },
+    {
+      "file": "05aug_trail.jpeg",
+      "captionEn": "D2. Trail stops",
+      "captionEs": "D2. Puntos del Sendero"
+    },
+    {
+      "file": "07aug2.jpeg",
+      "captionEn": "D3. Swimming in the lake",
+      "captionEs": "D3. Nadando en el lago"
+    },
+    {
+      "file": "07aug3.jpeg",
+      "captionEn": "D3. Peaceful evening",
+      "captionEs": "D3. Atardecer tranquilo"
+    },
+    {
+      "file": "08aug1.jpeg",
+      "captionEn": "D4. Starting the day in the mountain",
+      "captionEs": "D4. Comienza el día en la montaña"
+    },
+    {
+      "file": "08aug2.jpeg",
+      "captionEn": "D4. Rise & shine!",
+      "captionEs": "D4. Buenos dias!"
+    },
+    {
+      "file": "08aug3.jpeg",
+      "captionEn": "D4. Beautiful view",
+      "captionEs": "D4. Hermosa vista"
+    },
+    {
+      "file": "08aug4.jpeg",
+      "captionEn": "D4. Resting by the lake",
+      "captionEs": "D4. Descansando en el lago"
+    },
+    {
+      "file": "08aug5.jpeg",
+      "captionEn": "D4. Tean and good night!",
+      "captionEs": "D4. Te y buenas noches!"
+    },
+    {
+      "file": "09aug2.jpeg",
+      "captionEn": "D5. Cold and beautiful morning",
+      "captionEs": "D5. Una mañana fría y bella"
+    },
+    {
+      "file": "09aug3.jpeg",
+      "captionEn": "D5. Just breathtaking",
+      "captionEs": "D5. Simplemente Espectacular"
+    },
+    {
+      "file": "09aug4.jpeg",
+      "captionEn": "D5. Hello snow!",
+      "captionEs": "D5. Hola nieve!"
+    },
+    {
+      "file": "09aug5.jpeg",
+      "captionEn": "D5. We made it to 57 miles!",
+      "captionEs": "D5. Listos 92 km!"
     }
   ]  
 }
