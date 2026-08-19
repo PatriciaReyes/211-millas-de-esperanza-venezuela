@@ -26,9 +26,14 @@
       "captionEs": "D1. Cascada y Vally"
     },
     {
-      "file": "06aug_HalfDome.jpeg",
+      "file": "05aug_beauty1.jpeg",
       "captionEn": "D2. Half Dome",
       "captionEs": "D2. Half Dome"
+    },
+    {
+      "file": "06aug_HalfDome.jpeg",
+      "captionEn": "D2. Half Dome, up close",
+      "captionEs": "D2. Half Dome de cerca"
     },
     {
       "file": "06aug_topOfTheRock.jpeg",
@@ -96,6 +101,11 @@
       "captionEs": "D5. Listos 92 km!"
     },
     {
+      "file": "09aug11.jpeg",
+      "captionEn": "D5. Restocking for the next stretch",
+      "captionEs": "D5. Provisiones para el proximo tramo"
+    },
+    {
       "file": "10aug1_ducklake.jpeg",
       "captionEn": "D6. Waking up next to Duck Lake",
       "captionEs": "D6. Despertando junto al lago Duck"
@@ -157,7 +167,7 @@
     },
     {
       "file": "14aug2.jpeg",
-      "captionEn": "D10. Can you spot Alfredo along the cascade?",
+      "captionEn": "D10. Can you spot Alfredo near the cascade?",
       "captionEs": "D10. Puedes encontrar a Alfredo cerca de la cascada?"
     },
     {
@@ -244,6 +254,26 @@
       "file": "18aug5.jpeg",
       "captionEn": "D14. Sleep time at the foot of Mount Whitney",
       "captionEs": "D14. Hora de dormit al pie de Mount Whitney"
+    },
+    {
+      "file": "19aug1.jpeg",
+      "captionEn": "D15. Watching the sunrise from the summit",
+      "captionEs": "D15. Recibiendo el amanecer desde las alturas"
+    },
+    {
+      "file": "19aug3.jpeg",
+      "captionEn": "D15. Mauricio on top of Mount Whitney!",
+      "captionEs": "D15. Mauricio en la cima del Mount Whitney!"
+    },
+    {
+      "file": "19aug4.jpeg",
+      "captionEn": "D15. Mauricio at the summit Mount Whitney!",
+      "captionEs": "D15. Mauricio en la cima del Mount Whitney!"
+    },
+    {
+      "file": "19aug6.jpeg",
+      "captionEn": "D15. 211 miles later - The summit was the goal, Venezuela was the reason",
+      "captionEs": "D15. 340 kms después - La cima era la meta. Venezuela, la razón"
     }
   ]  
 }
