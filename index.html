@@ -540,22 +540,6 @@
     z-index:2;
   }
   .celebrate-close:hover{background:rgba(255,255,255,0.28);}
-  .celebrate-lang{
-    position:absolute; top:10px; left:12px;
-    display:flex; gap:5px;
-    z-index:2;
-  }
-  .celebrate-lang button{
-    background:rgba(255,255,255,0.15);
-    border:none;
-    border-radius:3px;
-    padding:2px;
-    cursor:pointer;
-    line-height:0;
-    opacity:0.6;
-  }
-  .celebrate-lang button.active{opacity:1; box-shadow:0 0 0 2px var(--gold);}
-  .celebrate-lang svg{display:block; width:22px; height:15px; border-radius:2px;}
   .celebrate-btn{
     display:inline-block;
     background:rgba(255,255,255,0.1);
@@ -1131,10 +1115,6 @@
     document.documentElement.setAttribute('data-active-lang', lang);
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('btn-es').classList.toggle('active', lang === 'es');
-    const celEn = document.getElementById('celebrateBtnEn');
-    const celEs = document.getElementById('celebrateBtnEs');
-    if (celEn) celEn.classList.toggle('active', lang === 'en');
-    if (celEs) celEs.classList.toggle('active', lang === 'es');
     renderDayText();
     renderMiles();
     loadPhotos();
@@ -1152,7 +1132,11 @@
   window.addEventListener('resize', syncHeaderHeight);
 
   render();
-  setLang('en'); // defaults to English on every visit, per request
+  (function(){
+    const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    const initialLang = browserLang.startsWith('es') ? 'es' : 'en';
+    setLang(initialLang);
+  })();
   loadPhotos();
   syncHeaderHeight();
 
@@ -1251,14 +1235,6 @@
 <div id="celebrateOverlay" class="celebrate-overlay" onclick="closeCelebrate(event)">
   <div class="celebrate-card" onclick="event.stopPropagation()">
     <button class="celebrate-close" onclick="closeCelebrate()" aria-label="Close">&times;</button>
-    <div class="celebrate-lang">
-      <button id="celebrateBtnEn" class="active" onclick="setLang('en')" aria-label="English">
-        <svg viewBox="0 0 19 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="19" height="10" fill="#B22234"/><rect y="0.77" width="19" height="0.77" fill="#FFF"/><rect y="2.31" width="19" height="0.77" fill="#FFF"/><rect y="3.85" width="19" height="0.77" fill="#FFF"/><rect y="5.38" width="19" height="0.77" fill="#FFF"/><rect y="6.92" width="19" height="0.77" fill="#FFF"/><rect y="8.46" width="19" height="0.77" fill="#FFF"/><rect width="7.6" height="5.38" fill="#3C3B6E"/></svg>
-      </button>
-      <button id="celebrateBtnEs" onclick="setLang('es')" aria-label="Español">
-        <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="3" height="0.667" fill="#FCD116"/><rect width="3" height="0.667" y="0.667" fill="#00247D"/><rect width="3" height="0.667" y="1.333" fill="#CF142B"/></svg>
-      </button>
-    </div>
     <div class="celebrate-photo">
       <img src="photos/19aug-we-did-it.jpeg" alt="Mauricio and Alfredo at the summit of Mount Whitney with the Venezuelan flag">
       <div class="celebrate-top-scrim">
