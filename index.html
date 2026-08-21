@@ -1149,11 +1149,11 @@
   function closeCelebrate(){
     const el = document.getElementById('celebrateOverlay');
     if (el) el.classList.remove('open');
-    try { localStorage.setItem('jmtCelebrateSeen', '1'); } catch(e){}
+    try { sessionStorage.setItem('jmtCelebrateSeen', '1'); } catch(e){}
   }
   function maybeShowCelebrate(){
     try {
-      if (localStorage.getItem('jmtCelebrateSeen')) return;
+      if (sessionStorage.getItem('jmtCelebrateSeen')) return;
     } catch(e){}
     const el = document.getElementById('celebrateOverlay');
     if (el) el.classList.add('open');
