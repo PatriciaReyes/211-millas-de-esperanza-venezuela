@@ -1068,7 +1068,8 @@
       const formatted = info.start.toLocaleDateString(currentLang === 'es' ? 'es-ES' : 'en-US', {month:'short', day:'numeric'});
       el.textContent = label + formatted;
     } else if (finished) {
-      el.textContent = info.day + (currentLang === 'es' ? ' días' : ' days');
+      const nightsCamped = info.day - 1;
+      el.textContent = nightsCamped + (currentLang === 'es' ? ' días' : ' days');
     } else {
       el.textContent = (currentLang === 'es' ? 'Día ' : 'Day ') + info.day;
     }
