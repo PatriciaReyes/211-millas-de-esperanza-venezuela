@@ -1032,7 +1032,7 @@
     amountRaised: 1245,            // estimated dollars raised so far
     startDate: "2026-08-05",    // trek start date, YYYY-MM-DD
     endDate: "2026-08-19",      // trek finish date — day counter freezes here
-    lastUpdated: "2026-08-20"   // format: YYYY-MM-DD
+    lastUpdated: "2026-08-19"   // format: YYYY-MM-DD
   };
 
   // Trail checkpoints used for the route map + legend below.
@@ -1059,10 +1059,16 @@
   function renderDayText() {
     const info = computeDay();
     const el = document.getElementById('statDays');
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const end = new Date(CAMPAIGN_DATA.endDate + 'T00:00:00');
+    const finished = today >= end;
     if (!info.started) {
       const label = currentLang === 'es' ? 'Comienza ' : 'Starts ';
       const formatted = info.start.toLocaleDateString(currentLang === 'es' ? 'es-ES' : 'en-US', {month:'short', day:'numeric'});
       el.textContent = label + formatted;
+    } else if (finished) {
+      el.textContent = info.day + (currentLang === 'es' ? ' días' : ' days');
     } else {
       el.textContent = (currentLang === 'es' ? 'Día ' : 'Day ') + info.day;
     }
