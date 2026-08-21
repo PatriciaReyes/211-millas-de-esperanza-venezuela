@@ -85,7 +85,7 @@
   .langbar{
     position:fixed;
     top:0; left:0; right:0;
-    z-index:50;
+    z-index:350;
     background:var(--charcoal);
     color:var(--stone);
   }
@@ -100,6 +100,7 @@
     flex-wrap:wrap;
   }
   .site-nav{display:flex; gap:4px;}
+  .site-nav > div{margin:0; padding:0;}
   .lang-buttons{display:flex; gap:2px;}
   .nav-tab{
     display:inline-block;
@@ -463,6 +464,106 @@
     padding:16px 8px 6px;
     line-height:1.3;
   }
+  .celebrate-overlay{
+    display:none;
+    position:fixed; inset:0; z-index:300;
+    background:rgba(20,18,14,0.85);
+    align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .celebrate-overlay.open{display:flex;}
+  .celebrate-card{
+    background:var(--stone);
+    border-radius:4px;
+    max-width:420px;
+    width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    position:relative;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .celebrate-photo{
+    position:relative;
+    border-radius:4px 4px 0 0;
+    overflow:hidden;
+  }
+  .celebrate-photo img{
+    width:100%;
+    max-height:340px;
+    object-fit:cover;
+    display:block;
+  }
+  .celebrate-photo::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 70%);
+    pointer-events:none;
+  }
+  .celebrate-overlay-text{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:18px 22px;
+    color:var(--white);
+    z-index:1;
+  }
+  .celebrate-overlay-text h3{
+    font-size:26px;
+    margin-bottom:4px;
+    text-shadow:0 2px 8px rgba(0,0,0,0.4);
+  }
+  .celebrate-overlay-text .stats{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    color:var(--stone-dim);
+    text-shadow:0 1px 4px rgba(0,0,0,0.4);
+  }
+  .celebrate-body{padding:22px 28px 28px;}
+  .celebrate-body p{
+    font-size:15px;
+    color:var(--charcoal-soft);
+    line-height:1.5;
+  }
+  .celebrate-close{
+    position:absolute; top:10px; right:12px;
+    background:rgba(20,18,14,0.55);
+    border:none;
+    color:var(--white);
+    width:30px; height:30px;
+    border-radius:50%;
+    font-size:18px;
+    line-height:1;
+    cursor:pointer;
+    z-index:2;
+  }
+  .celebrate-lang{
+    position:absolute; top:10px; left:12px;
+    display:flex; gap:5px;
+    z-index:2;
+  }
+  .celebrate-lang button{
+    background:rgba(20,18,14,0.55);
+    border:none;
+    border-radius:3px;
+    padding:2px;
+    cursor:pointer;
+    line-height:0;
+    opacity:0.6;
+  }
+  .celebrate-lang button.active{opacity:1; box-shadow:0 0 0 2px var(--gold);}
+  .celebrate-lang svg{display:block; width:22px; height:15px; border-radius:2px;}
+  .celebrate-btn{
+    display:inline-block;
+    background:var(--alpenglow);
+    color:var(--white);
+    padding:12px 24px;
+    border-radius:3px;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    margin-top:16px;
+  }
+  .celebrate-btn:hover{background:#A6431E;}
   .lightbox{
     display:none;
     position:fixed; inset:0; z-index:200;
@@ -717,8 +818,8 @@
     <h1 data-lang="en">John Muir Trail for <em>Venezuela</em></h1>
     <h1 data-lang="es">John Muir Trail para <em>Venezuela</em></h1>
 
-    <p class="hero-sub" data-lang="en">Walking 211 miles of hope from Yosemite to Mount Whitney for the children of Venezuela.</p>
-    <p class="hero-sub" data-lang="es">Caminando 340 kilómetros de esperanza desde Yosemite hasta el Monte Whitney por los niños de Venezuela.</p>
+    <p class="hero-sub" data-lang="en">Walked 211 miles of hope from Yosemite to Mount Whitney for the children of Venezuela.</p>
+    <p class="hero-sub" data-lang="es">Caminaron 340 kilómetros de esperanza desde Yosemite hasta el Monte Whitney por los niños de Venezuela.</p>
 
     <p class="hero-names">Mauricio Fuentes &amp; Alfredo Millán</p>
   </div>
@@ -854,7 +955,7 @@
         <div class="sg-label" data-lang="es">ASCENSO</div>
       </div>
       <div>
-        <div class="sg-num">18–22</div>
+        <div class="sg-num">15-22</div>
         <div class="sg-label" data-lang="en">DAYS ON TRAIL</div>
         <div class="sg-label" data-lang="es">DÍAS EN EL SENDERO</div>
       </div>
@@ -941,7 +1042,8 @@
     milesWalked: 211,             // how many of the 211 miles they've completed
     totalMiles: 211,
     amountRaised: 920,            // estimated dollars raised so far
-    startDate: "2026-08-05",    // trek start date, YYYY-MM-DD — confirm 08-04 vs 08-05
+    startDate: "2026-08-05",    // trek start date, YYYY-MM-DD
+    endDate: "2026-08-19",      // trek finish date — day counter freezes here
     lastUpdated: "2026-08-18"   // format: YYYY-MM-DD
   };
 
@@ -957,9 +1059,11 @@
 
   function computeDay() {
     const start = new Date(CAMPAIGN_DATA.startDate + 'T00:00:00');
+    const end = new Date(CAMPAIGN_DATA.endDate + 'T00:00:00');
     const today = new Date();
     today.setHours(0,0,0,0);
-    const diff = Math.round((today - start) / 86400000);
+    const cappedToday = today > end ? end : today;
+    const diff = Math.round((cappedToday - start) / 86400000);
     if (diff < 0) return { started:false, day:0, start };
     return { started:true, day:diff + 1, start };
   }
@@ -1023,6 +1127,10 @@
     document.documentElement.setAttribute('data-active-lang', lang);
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    const celEn = document.getElementById('celebrateBtnEn');
+    const celEs = document.getElementById('celebrateBtnEs');
+    if (celEn) celEn.classList.toggle('active', lang === 'en');
+    if (celEs) celEs.classList.toggle('active', lang === 'es');
     renderDayText();
     renderMiles();
     loadPhotos();
@@ -1043,6 +1151,25 @@
   setLang('en'); // defaults to English on every visit, per request
   loadPhotos();
   syncHeaderHeight();
+
+  function closeCelebrate(){
+    const el = document.getElementById('celebrateOverlay');
+    if (el) el.classList.remove('open');
+    try { localStorage.setItem('jmtCelebrateSeen', '1'); } catch(e){}
+  }
+  function maybeShowCelebrate(){
+    try {
+      if (localStorage.getItem('jmtCelebrateSeen')) return;
+    } catch(e){}
+    const el = document.getElementById('celebrateOverlay');
+    if (el) el.classList.add('open');
+  }
+  document.addEventListener('DOMContentLoaded', maybeShowCelebrate);
+  // in case DOMContentLoaded already fired by the time this script ran
+  if (document.readyState !== 'loading') maybeShowCelebrate();
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeCelebrate();
+  });
 
   let currentPhotos = [];
   let currentPhotoIndex = 0;
@@ -1116,6 +1243,48 @@
     touchStartX = null;
   });
 </script>
+
+<div id="celebrateOverlay" class="celebrate-overlay" onclick="closeCelebrate(event)">
+  <div class="celebrate-card" onclick="event.stopPropagation()">
+    <button class="celebrate-close" onclick="closeCelebrate()" aria-label="Close">&times;</button>
+    <div class="celebrate-lang">
+      <button id="celebrateBtnEn" class="active" onclick="setLang('en')" aria-label="English">
+        <svg viewBox="0 0 19 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="19" height="10" fill="#B22234"/><rect y="0.77" width="19" height="0.77" fill="#FFF"/><rect y="2.31" width="19" height="0.77" fill="#FFF"/><rect y="3.85" width="19" height="0.77" fill="#FFF"/><rect y="5.38" width="19" height="0.77" fill="#FFF"/><rect y="6.92" width="19" height="0.77" fill="#FFF"/><rect y="8.46" width="19" height="0.77" fill="#FFF"/><rect width="7.6" height="5.38" fill="#3C3B6E"/></svg>
+      </button>
+      <button id="celebrateBtnEs" onclick="setLang('es')" aria-label="Español">
+        <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="3" height="0.667" fill="#FCD116"/><rect width="3" height="0.667" y="0.667" fill="#00247D"/><rect width="3" height="0.667" y="1.333" fill="#CF142B"/></svg>
+      </button>
+    </div>
+    <div class="celebrate-photo">
+      <img src="photos/19aug-we-did-it.jpg" alt="Mauricio and Alfredo at the summit of Mount Whitney with the Venezuelan flag">
+      <div class="celebrate-overlay-text">
+        <div data-lang="en">
+          <h3>We did it!
+            <svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="Venezuela"><rect width="3" height="0.667" fill="#FCD116"/><rect width="3" height="0.667" y="0.667" fill="#00247D"/><rect width="3" height="0.667" y="1.333" fill="#CF142B"/><circle cx="1.00" cy="1.05" r="0.05" fill="#FFF"/><circle cx="1.13" cy="0.95" r="0.05" fill="#FFF"/><circle cx="1.26" cy="0.88" r="0.05" fill="#FFF"/><circle cx="1.40" cy="0.85" r="0.05" fill="#FFF"/><circle cx="1.60" cy="0.85" r="0.05" fill="#FFF"/><circle cx="1.74" cy="0.88" r="0.05" fill="#FFF"/><circle cx="1.87" cy="0.95" r="0.05" fill="#FFF"/><circle cx="2.00" cy="1.05" r="0.05" fill="#FFF"/></svg>
+            <svg class="flag-icon" viewBox="0 0 19 10" xmlns="http://www.w3.org/2000/svg" aria-label="United States"><rect width="19" height="10" fill="#B22234"/><rect y="0.77" width="19" height="0.77" fill="#FFF"/><rect y="2.31" width="19" height="0.77" fill="#FFF"/><rect y="3.85" width="19" height="0.77" fill="#FFF"/><rect y="5.38" width="19" height="0.77" fill="#FFF"/><rect y="6.92" width="19" height="0.77" fill="#FFF"/><rect y="8.46" width="19" height="0.77" fill="#FFF"/><rect width="7.6" height="5.38" fill="#3C3B6E"/><circle cx="0.7" cy="0.75" r="0.22" fill="#FFF"/><circle cx="2.25" cy="0.75" r="0.22" fill="#FFF"/><circle cx="3.8" cy="0.75" r="0.22" fill="#FFF"/><circle cx="5.35" cy="0.75" r="0.22" fill="#FFF"/><circle cx="6.9" cy="0.75" r="0.22" fill="#FFF"/><circle cx="0.7" cy="2.15" r="0.22" fill="#FFF"/><circle cx="2.25" cy="2.15" r="0.22" fill="#FFF"/><circle cx="3.8" cy="2.15" r="0.22" fill="#FFF"/><circle cx="5.35" cy="2.15" r="0.22" fill="#FFF"/><circle cx="6.9" cy="2.15" r="0.22" fill="#FFF"/><circle cx="0.7" cy="3.55" r="0.22" fill="#FFF"/><circle cx="2.25" cy="3.55" r="0.22" fill="#FFF"/><circle cx="3.8" cy="3.55" r="0.22" fill="#FFF"/><circle cx="5.35" cy="3.55" r="0.22" fill="#FFF"/><circle cx="6.9" cy="3.55" r="0.22" fill="#FFF"/><circle cx="0.7" cy="4.95" r="0.22" fill="#FFF"/><circle cx="2.25" cy="4.95" r="0.22" fill="#FFF"/><circle cx="3.8" cy="4.95" r="0.22" fill="#FFF"/><circle cx="5.35" cy="4.95" r="0.22" fill="#FFF"/><circle cx="6.9" cy="4.95" r="0.22" fill="#FFF"/></svg>
+          </h3>
+          <p class="stats">Mount Whitney · 211 miles · 15 days</p>
+        </div>
+        <div data-lang="es">
+          <h3>¡Lo logramos!
+            <svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="Venezuela"><rect width="3" height="0.667" fill="#FCD116"/><rect width="3" height="0.667" y="0.667" fill="#00247D"/><rect width="3" height="0.667" y="1.333" fill="#CF142B"/><circle cx="1.00" cy="1.05" r="0.05" fill="#FFF"/><circle cx="1.13" cy="0.95" r="0.05" fill="#FFF"/><circle cx="1.26" cy="0.88" r="0.05" fill="#FFF"/><circle cx="1.40" cy="0.85" r="0.05" fill="#FFF"/><circle cx="1.60" cy="0.85" r="0.05" fill="#FFF"/><circle cx="1.74" cy="0.88" r="0.05" fill="#FFF"/><circle cx="1.87" cy="0.95" r="0.05" fill="#FFF"/><circle cx="2.00" cy="1.05" r="0.05" fill="#FFF"/></svg>
+          </h3>
+          <p class="stats">Mount Whitney · 340 kilometros · 15 días</p>
+        </div>
+      </div>
+    </div>
+    <div class="celebrate-body">
+      <div data-lang="en">
+        <p>The summit was the goal, Venezuela was the reason. Thank you for following along every step of the way!</p>
+        <a class="celebrate-btn" href="#donate" onclick="closeCelebrate()">Support the cause →</a>
+      </div>
+      <div data-lang="es">
+        <p>La cima era la meta; Venezuela, la razón. ¡Gracias por acompañarlos en cada paso!</p>
+        <a class="celebrate-btn" href="#donate" onclick="closeCelebrate()">Apoya la causa →</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="lightbox" class="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
