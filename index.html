@@ -484,49 +484,51 @@
   }
   .celebrate-photo{
     position:relative;
-    border-radius:4px 4px 0 0;
+    background:var(--charcoal);
+    border-radius:4px;
     overflow:hidden;
   }
   .celebrate-photo img{
     width:100%;
-    max-height:340px;
-    object-fit:cover;
+    max-height:75vh;
+    object-fit:contain;
     display:block;
   }
-  .celebrate-photo::after{
-    content:"";
-    position:absolute; inset:0;
-    background:linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 70%);
-    pointer-events:none;
-  }
-  .celebrate-overlay-text{
-    position:absolute;
-    left:0; right:0; bottom:0;
-    padding:18px 22px;
-    color:var(--white);
+  .celebrate-top-scrim{
+    position:absolute; left:0; right:0; top:0;
+    padding:44px 60px 30px 20px;
+    background:linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0) 100%);
     z-index:1;
   }
-  .celebrate-overlay-text h3{
-    font-size:26px;
+  .celebrate-top-scrim h3{
+    font-size:22px;
+    color:var(--white);
     margin-bottom:4px;
-    text-shadow:0 2px 8px rgba(0,0,0,0.4);
+    text-shadow:0 2px 6px rgba(0,0,0,0.5);
   }
-  .celebrate-overlay-text .stats{
+  .celebrate-top-scrim .stats{
     font-family:'IBM Plex Mono',monospace;
-    font-size:12.5px;
+    font-size:12px;
     letter-spacing:0.04em;
     color:var(--stone-dim);
-    text-shadow:0 1px 4px rgba(0,0,0,0.4);
+    text-shadow:0 1px 4px rgba(0,0,0,0.5);
   }
-  .celebrate-body{padding:22px 28px 28px;}
-  .celebrate-body p{
-    font-size:15px;
-    color:var(--charcoal-soft);
-    line-height:1.5;
+  .celebrate-bottom-scrim{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:30px 20px 18px;
+    background:linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0) 100%);
+    z-index:1;
+  }
+  .celebrate-bottom-scrim p{
+    font-size:13.5px;
+    color:var(--stone);
+    line-height:1.45;
+    margin-bottom:12px;
+    text-shadow:0 1px 4px rgba(0,0,0,0.5);
   }
   .celebrate-close{
     position:absolute; top:10px; right:12px;
-    background:rgba(20,18,14,0.55);
+    background:rgba(255,255,255,0.15);
     border:none;
     color:var(--white);
     width:30px; height:30px;
@@ -536,13 +538,14 @@
     cursor:pointer;
     z-index:2;
   }
+  .celebrate-close:hover{background:rgba(255,255,255,0.28);}
   .celebrate-lang{
     position:absolute; top:10px; left:12px;
     display:flex; gap:5px;
     z-index:2;
   }
   .celebrate-lang button{
-    background:rgba(20,18,14,0.55);
+    background:rgba(255,255,255,0.15);
     border:none;
     border-radius:3px;
     padding:2px;
@@ -554,16 +557,16 @@
   .celebrate-lang svg{display:block; width:22px; height:15px; border-radius:2px;}
   .celebrate-btn{
     display:inline-block;
-    background:var(--alpenglow);
+    background:rgba(255,255,255,0.1);
+    border:1.5px solid var(--white);
     color:var(--white);
-    padding:12px 24px;
+    padding:10px 22px;
     border-radius:3px;
     font-size:14px;
     font-weight:600;
     text-decoration:none;
-    margin-top:16px;
   }
-  .celebrate-btn:hover{background:#A6431E;}
+  .celebrate-btn:hover{background:rgba(255,255,255,0.22);}
   .lightbox{
     display:none;
     position:fixed; inset:0; z-index:200;
@@ -1041,7 +1044,7 @@
   const CAMPAIGN_DATA = {
     milesWalked: 211,             // how many of the 211 miles they've completed
     totalMiles: 211,
-    amountRaised: 920,            // estimated dollars raised so far
+    amountRaised: 970,            // estimated dollars raised so far
     startDate: "2026-08-05",    // trek start date, YYYY-MM-DD
     endDate: "2026-08-19",      // trek finish date — day counter freezes here
     lastUpdated: "2026-08-18"   // format: YYYY-MM-DD
@@ -1256,8 +1259,8 @@
       </button>
     </div>
     <div class="celebrate-photo">
-      <img src="photos/19aug-we-did-it.jpeg" alt="Mauricio and Alfredo at the summit of Mount Whitney with the Venezuelan flag">
-      <div class="celebrate-overlay-text">
+      <img src="photos/19aug-we-did-it.last" alt="Mauricio and Alfredo at the summit of Mount Whitney with the Venezuelan flag">
+      <div class="celebrate-top-scrim">
         <div data-lang="en">
           <h3>We did it!
             <svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="Venezuela"><rect width="3" height="0.667" fill="#FCD116"/><rect width="3" height="0.667" y="0.667" fill="#00247D"/><rect width="3" height="0.667" y="1.333" fill="#CF142B"/><circle cx="1.00" cy="1.05" r="0.05" fill="#FFF"/><circle cx="1.13" cy="0.95" r="0.05" fill="#FFF"/><circle cx="1.26" cy="0.88" r="0.05" fill="#FFF"/><circle cx="1.40" cy="0.85" r="0.05" fill="#FFF"/><circle cx="1.60" cy="0.85" r="0.05" fill="#FFF"/><circle cx="1.74" cy="0.88" r="0.05" fill="#FFF"/><circle cx="1.87" cy="0.95" r="0.05" fill="#FFF"/><circle cx="2.00" cy="1.05" r="0.05" fill="#FFF"/></svg>
@@ -1272,15 +1275,15 @@
           <p class="stats">Mount Whitney · 340 kilometros · 15 días</p>
         </div>
       </div>
-    </div>
-    <div class="celebrate-body">
-      <div data-lang="en">
-        <p>The summit was the goal, Venezuela was the reason. Thank you for following along every step of the way!</p>
-        <a class="celebrate-btn" href="#donate" onclick="closeCelebrate()">Support the cause →</a>
-      </div>
-      <div data-lang="es">
-        <p>La cima era la meta; Venezuela, la razón. ¡Gracias por acompañarlos en cada paso!</p>
-        <a class="celebrate-btn" href="#donate" onclick="closeCelebrate()">Apoya la causa →</a>
+      <div class="celebrate-bottom-scrim">
+        <div data-lang="en">
+          <p>The summit was the goal, Venezuela was the reason. Thank you for following along every step of the way!</p>
+          <a class="celebrate-btn" href="#donate" onclick="closeCelebrate()">Support the cause →</a>
+        </div>
+        <div data-lang="es">
+          <p>La cima era la meta; Venezuela, la razón. ¡Gracias por acompañarlos en cada paso!</p>
+          <a class="celebrate-btn" href="#donate" onclick="closeCelebrate()">Apoya la causa →</a>
+        </div>
       </div>
     </div>
   </div>
